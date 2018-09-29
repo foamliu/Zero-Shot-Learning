@@ -48,9 +48,9 @@ class ZslDataset(Dataset):
         path = os.path.join(self.image_folder, img_path)
         # Read images
         img = imread(path)
-        img = imresize(img, (256, 256))
+        img = imresize(img, (224, 224))
         img = img.transpose(2, 0, 1)
-        assert img.shape == (3, 256, 256)
+        assert img.shape == (3, 224, 224)
         assert np.max(img) <= 255
         img = torch.FloatTensor(img / 255.)
         if self.transform is not None:
