@@ -64,7 +64,7 @@ def valid(val_loader, model):
 
     start = time.time()
 
-    with torch.no_grad:
+    with torch.no_grad():
         # Batches
         for i_batch, (img, attributes) in enumerate(val_loader):
             # Set device options
