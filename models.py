@@ -45,4 +45,4 @@ class Encoder(nn.Module):
 
 if __name__ == '__main__':
     encoder = Encoder(embedding_size=123).to(device)
-    summary(encoder, (3, 224, 224))
+    summary(encoder, (3, 256, 256))
