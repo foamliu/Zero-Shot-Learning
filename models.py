@@ -1,6 +1,5 @@
 import torchvision
 from torch import nn
-from torchsummary import summary
 
 from config import *
 
@@ -44,5 +43,7 @@ class Encoder(nn.Module):
 
 
 if __name__ == '__main__':
+    from torchsummary import summary
+
     encoder = Encoder(embedding_size=123).to(device)
     summary(encoder, (3, 256, 256))
