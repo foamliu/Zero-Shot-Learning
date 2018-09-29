@@ -14,21 +14,29 @@ class ZslDataset(Dataset):
             annotations_labels = zsl_a_animals_train_annotations_labels
             annotations_attributes_per_clas = zsl_a_animals_train_annotations_attributes_per_clas
 
-        if split == 'train':
-            samples_path = 'data/samples_train.json'
-            self.samples = json.load(open(samples_path, 'r'))
-        else:
-            samples_path = 'data/samples_valid.json'
-            self.samples = json.load(open(samples_path, 'r'))
+        with open(annotations_labels, 'r') as file:
+            label_lines = file.readlines()
+
+        for label_line in label_lines:
+            tokens = [token.split() for token in label_line.split(',')]
+            label_id = tokens[1]
+            image_path = tokens[3]
+
+        with open(annotations_attributes_per_clas, 'r') as file:
+            attributes_lines = file.readlines()
+
+        for attributes_line in attributes_lines:
+            tokens = [token.split() for token in attributes_line.split(',')]
+            label_id = tokens[0]
+
+
 
     def __getitem__(self, i):
-        pair_batch = []
-
-        for i_batch in range(batch_size):
-            sample = self.samples[i + i_batch]
-            pair_batch.append((sample['input'], sample['output']))
-
-        return batch2TrainData(pair_batch)
+        return None
 
     def __len__(self):
         return len(self.samples)
+
+if __name__ == '__main__':
+    dataset = ZslDataset('Animals', 'train')
+

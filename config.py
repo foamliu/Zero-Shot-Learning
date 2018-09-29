@@ -11,6 +11,7 @@ start_epoch = 0
 epochs = 120
 batch_size = 256
 train_split = 0.8
+feature_size = 2048  # ResNet-101 feature size
 
 data_folder = 'data'
 test_a_folder = 'data/ai_challenger_zsl2018_train_test_a_20180321'
