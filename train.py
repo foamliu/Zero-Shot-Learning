@@ -87,7 +87,7 @@ def valid(val_loader, model):
                       'Batch Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
                       'Loss {loss.val:.4f} ({loss.avg:.4f})\t'.format(i_batch, len(val_loader),
                                                                       batch_time=batch_time,
-                                                                      loss=losses)
+                                                                      loss=losses))
 
     return loss
 
