@@ -64,12 +64,24 @@ class ZslDataset(Dataset):
 
 
 if __name__ == '__main__':
-    data_set = ZslDataset('Animals', 'train')
-    print(data_set.__len__())
-    print(data_set.__getitem__(0))
+    train_data = ZslDataset('Animals', 'train')
+    print(len(train_data))
+    print(train_data[0])
 
-    print('Checking attributes...')
-    for i in tqdm(range(len(data_set))):
-        img_path, attributes = data_set[i]
+    print('Checking train data attributes...')
+    for i in tqdm(range(len(train_data))):
+        img_path, attributes = train_data[i]
         assert len(attributes) == 123
     print('DONE')
+
+    val_data = ZslDataset('Animals', 'valid')
+    print(len(val_data))
+    print(val_data[0])
+
+    print('Checking valid data attributes...')
+    for i in tqdm(range(len(val_data))):
+        img_path, attributes = val_data[i]
+        assert len(attributes) == 123
+    print('DONE')
+
+
