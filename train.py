@@ -53,9 +53,50 @@ def train(epoch, train_loader, model, optimizer):
                                                                   loss=losses))
 
 
+def valid(val_loader, model):
+    model.eval()  # eval mode (no dropout or batchnorm)
+
+    # Loss function
+    criterion = nn.MSELoss().to(device)
+
+    batch_time = AverageMeter()  # forward prop. + back prop. time
+    losses = AverageMeter()  # loss (per word decoded)
+
+    start = time.time()
+
+    with torch.no_grad:
+        # Batches
+        for i_batch, (img, attributes) in enumerate(val_loader):
+            # Set device options
+            img = img.to(device)
+            targets = attributes.to(device)
+
+            scores = model(img)
+
+            loss = criterion(scores, targets)
+
+            # Keep track of metrics
+            losses.update(loss.item())
+            batch_time.update(time.time() - start)
+
+            start = time.time()
+
+            # Print status
+            if i_batch % print_freq == 0:
+                print('Validation: [{0}/{1}]\t'
+                      'Batch Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
+                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'.format(i_batch, len(val_loader),
+                                                                      batch_time=batch_time,
+                                                                      loss=losses)
+
+    return loss
+
+
 def main():
     train_loader = DataLoader(dataset=ZslDataset('Animals', 'train'), batch_size=batch_size, shuffle=True,
                               pin_memory=True, drop_last=True)
+    val_loader = DataLoader(dataset=ZslDataset('Animals', 'valid'), batch_size=batch_size, pin_memory=True,
+                            drop_last=True)
 
     # Initialize encoder
     model = Encoder(embedding_size=123)
@@ -70,7 +111,10 @@ def main():
     for epoch in range(start_epoch, epochs):
         # One epoch's training
 
-        loss = train(epoch, train_loader, model, optimizer)
+        train(epoch, train_loader, model, optimizer)
+
+        val_loss = valid(val_loader, model)
+        print('\n * LOSS - {loss:.3f}\n'.format(loss=val_loss))
 
 
 if __name__ == '__main__':
