@@ -44,6 +44,7 @@ class ZslDataset(Dataset):
     def __getitem__(self, i):
         img_path = self.samples['img_path'][i]
         attributes = parse_attributes(self.samples['attributes'][i])
+
         path = os.path.join(self.image_folder, img_path)
         # Read images
         img = imread(path)
@@ -54,6 +55,8 @@ class ZslDataset(Dataset):
         img = torch.FloatTensor(img / 255.)
         if self.transform is not None:
             img = self.transform(img)
+        attributes = torch.FloatTensor(attributes)
+
         return img, np.array(attributes)
 
     def __len__(self):
