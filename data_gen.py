@@ -43,7 +43,7 @@ if __name__ == '__main__':
     print(data_set.__getitem__(0))
 
     print('Checking attributes...')
-    for i in tqdm(len(data_set)):
+    for i in tqdm(range(len(data_set))):
         img_path, attributes = data_set[i]
         assert len(attributes) == 123
     print('DONE')

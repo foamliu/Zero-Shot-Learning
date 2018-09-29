@@ -1,5 +1,7 @@
-from torch import optim
 import time
+
+from torch import optim
+
 from config import *
 from models import Encoder
 
@@ -21,8 +23,6 @@ def main():
         encoder.train()
 
         start = time.time()
-
-
 
 
 if __name__ == '__main__':
