@@ -26,7 +26,13 @@ class ZslDataset(Dataset):
         attributes.columns = ['label_id', 'attributes']
         attributes['attributes'] = attributes['attributes'].str.strip()
 
-        self.samples = pd.merge(labels, attributes, on='label_id')
+        samples = pd.merge(labels, attributes, on='label_id')
+        train_count = int(len(samples) * train_split)
+
+        if split == 'train':
+            self.samples = samples[:train_count]
+        else:
+            self.samples = samples[train_count:]
 
     def __getitem__(self, i):
         img_path = self.samples['img_path'][i]
