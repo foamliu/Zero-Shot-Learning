@@ -34,16 +34,18 @@ class ZslDataset(Dataset):
 
         if split == 'train':
             self.samples = samples[:train_count]
+            self.start_index = 0
         else:
             self.samples = samples[train_count:]
+            self.start_index = train_count
 
         normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                          std=[0.229, 0.224, 0.225])
         self.transform = transforms.Compose([normalize])
 
     def __getitem__(self, i):
-        img_path = self.samples['img_path'][i]
-        attributes = parse_attributes(self.samples['attributes'][i])
+        img_path = self.samples['img_path'][self.start_index + i]
+        attributes = parse_attributes(self.samples['attributes'][self.start_index + i])
 
         path = os.path.join(self.image_folder, img_path)
         # Read images
@@ -83,5 +85,3 @@ if __name__ == '__main__':
         img_path, attributes = val_data[i]
         assert len(attributes) == 123
     print('DONE')
-
-
