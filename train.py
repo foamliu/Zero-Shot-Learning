@@ -58,7 +58,7 @@ def main():
                               pin_memory=True, drop_last=True)
 
     # Initialize encoder
-    model = Encoder()
+    model = Encoder(embedding_size=123)
 
     # Use appropriate device
     model = model.to(device)
