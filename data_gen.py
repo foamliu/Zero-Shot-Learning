@@ -1,5 +1,6 @@
 import pandas as pd
 from torch.utils.data import Dataset
+from tqdm import tqdm
 
 from config import *
 from utils import *
@@ -40,7 +41,9 @@ if __name__ == '__main__':
     data_set = ZslDataset('Animals', 'train')
     print(data_set.__len__())
     print(data_set.__getitem__(0))
-    print(data_set.__getitem__(1))
-    print(data_set.__getitem__(2))
-    print(data_set.__getitem__(3))
-    print(data_set.__getitem__(4))
+
+    print('Checking attributes...')
+    for item in tqdm(data_set):
+        img_path, attributes = item
+        assert len(attributes) == 123
+    print('DONE')
