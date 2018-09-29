@@ -2,6 +2,7 @@ import pandas as pd
 from torch.utils.data import Dataset
 
 from config import *
+from utils import *
 
 
 class ZslDataset(Dataset):
@@ -28,7 +29,7 @@ class ZslDataset(Dataset):
 
     def __getitem__(self, i):
         img_path = self.samples['img_path'][i]
-        attributes = self.samples['attributes'][i]
+        attributes = parse_attributes(self.samples['attributes'][i])
         return img_path, attributes
 
     def __len__(self):
