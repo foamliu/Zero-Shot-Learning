@@ -19,8 +19,10 @@ class ZslDataset(Dataset):
         labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6])
         labels.columns = ['label_id', 'img_path']
         labels['label_id'] = labels['label_id'].str.strip()
+        labels['img_path'] = labels['img_path'].str.strip()
         attributes = pd.read_csv(annotations_attributes_per_clas, header=None)
         attributes.columns = ['label_id', 'attributes']
+        attributes['attributes'] = attributes['attributes'].str.strip()
 
         self.samples = pd.merge(labels, attributes, on='label_id')
 
