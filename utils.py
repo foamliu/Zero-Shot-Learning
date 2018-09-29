@@ -11,3 +11,5 @@ def parse_attributes(attr_str):
     attr_list = []
     for i in range(1, len(tokens) - 1):
         attr_list.append(float(tokens[i]))
+
+    return attr_list
