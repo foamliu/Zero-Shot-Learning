@@ -9,7 +9,7 @@ learning_rate = 0.0001
 print_every = 100
 start_epoch = 0
 epochs = 120
-batch_size = 256
+batch_size = 16
 train_split = 0.8
 feature_size = 2048  # ResNet-101 feature size
 
@@ -27,6 +27,8 @@ zsl_b_hairstyles_train_folder = os.path.join(data_folder, 'zsl_b_electronics_tra
 zsl_b_hairstyles_test_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
 zsl_b_vehicles_train_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
 zsl_b_vehicles_test_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
+
+zsl_a_animals_train_image_folder = os.path.join(zsl_a_animals_train_folder, 'zsl_a_animals_train_images_20180321')
 
 zsl_a_animals_train_annotations_labels = os.path.join(zsl_a_animals_train_folder,
                                                       'zsl_a_animals_train_annotations_labels_20180321.txt')

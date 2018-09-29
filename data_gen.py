@@ -1,3 +1,4 @@
+import pandas as pd
 from torch.utils.data import Dataset
 
 from config import *
@@ -13,30 +14,30 @@ class ZslDataset(Dataset):
         if super_class == 'Animals':
             annotations_labels = zsl_a_animals_train_annotations_labels
             annotations_attributes_per_clas = zsl_a_animals_train_annotations_attributes_per_clas
+            self.image_folder = zsl_a_animals_train_image_folder
 
-        with open(annotations_labels, 'r') as file:
-            label_lines = file.readlines()
+        labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6])
+        labels.columns = ['label_id', 'img_path']
+        labels['label_id'] = labels['label_id'].str.strip()
+        attributes = pd.read_csv(annotations_attributes_per_clas, header=None)
+        attributes.columns = ['label_id', 'attributes']
 
-        for label_line in label_lines:
-            tokens = [token.split() for token in label_line.split(',')]
-            label_id = tokens[1]
-            image_path = tokens[3]
-
-        with open(annotations_attributes_per_clas, 'r') as file:
-            attributes_lines = file.readlines()
-
-        for attributes_line in attributes_lines:
-            tokens = [token.split() for token in attributes_line.split(',')]
-            label_id = tokens[0]
-
-
+        self.samples = pd.merge(labels, attributes, on='label_id')
 
     def __getitem__(self, i):
-        return None
+        img_path = self.samples['img_path'][i]
+        attributes = self.samples['attributes'][i]
+        return img_path, attributes
 
     def __len__(self):
-        return len(self.samples)
+        return self.samples.shape[0]
+
 
 if __name__ == '__main__':
-    dataset = ZslDataset('Animals', 'train')
-
+    data_set = ZslDataset('Animals', 'train')
+    print(data_set.__len__())
+    print(data_set.__getitem__(0))
+    print(data_set.__getitem__(1))
+    print(data_set.__getitem__(2))
+    print(data_set.__getitem__(3))
+    print(data_set.__getitem__(4))
