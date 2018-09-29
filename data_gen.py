@@ -1,4 +1,7 @@
+import numpy as np
 import pandas as pd
+import torchvision.transforms as transforms
+from scipy.misc import imread, imresize
 from torch.utils.data import Dataset
 from tqdm import tqdm
 
@@ -34,10 +37,24 @@ class ZslDataset(Dataset):
         else:
             self.samples = samples[train_count:]
 
+        normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                         std=[0.229, 0.224, 0.225])
+        self.transform = transforms.Compose([normalize])
+
     def __getitem__(self, i):
         img_path = self.samples['img_path'][i]
         attributes = parse_attributes(self.samples['attributes'][i])
-        return img_path, attributes
+        path = os.path.join(self.image_folder, img_path)
+        # Read images
+        img = imread(path)
+        img = imresize(img, (256, 256))
+        img = img.transpose(2, 0, 1)
+        assert img.shape == (3, 256, 256)
+        assert np.max(img) <= 255
+        img = torch.FloatTensor(img / 255.)
+        if self.transform is not None:
+            img = self.transform(img)
+        return img, np.array(attributes)
 
     def __len__(self):
         return self.samples.shape[0]

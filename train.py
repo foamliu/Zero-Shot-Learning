@@ -22,7 +22,7 @@ def main():
         # Ensure dropout layers are in train mode
         encoder.train()
 
-        start = time.time()
+
 
 
 if __name__ == '__main__':
