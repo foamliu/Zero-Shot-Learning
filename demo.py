@@ -25,7 +25,7 @@ def main():
              file.lower().endswith('.jpg')]
     samples = random.sample(files, 10)
 
-    imgs = torch.zeros([10, 3, 224, 224], dtype=torch.float)
+    imgs = torch.zeros([10, 3, 224, 224], dtype=torch.float, device=device)
 
     for i, path in enumerate(samples):
         # Read images
