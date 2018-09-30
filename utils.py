@@ -98,3 +98,18 @@ def adjust_learning_rate(optimizer, shrink_factor):
     for param_group in optimizer.param_groups:
         param_group['lr'] = param_group['lr'] * shrink_factor
     print("The new learning rate is %f\n" % (optimizer.param_groups[0]['lr'],))
+
+
+def get_label_list():
+    import pandas as pd
+    labels = pd.read_csv(
+        'data/ai_challenger_zsl2018_train_test_a_20180321/zsl_a_animals_train_20180321/zsl_a_animals_train_annotations_label_list_20180321.txt',
+        header=None)
+    labels.columns = ['label_name', 'cat_name_en', 'cat_name_zh']
+    labels['label_name'] = labels['label_name'].str.strip()
+    labels['cat_name_zh'] = labels['cat_name_zh'].str.strip()
+    label_list = []
+    for i in range(len(labels)):
+        label_list.append(label_list['cat_name_zh'][i])
+
+    return label_list

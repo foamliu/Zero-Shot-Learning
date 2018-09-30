@@ -40,12 +40,14 @@ def main():
     _, scores = batched_KNN(preds, 1)
 
     batch_size = preds.size()[0]
+    label_list = get_label_list()
 
     for i in range(batch_size):
         embeded = preds[i]
         print('embeded: ' + str(embeded))
         score = scores[i]
         print('score: ' + str(score))
+        result.append({'i': i, 'cat_name_zh': label_list[score]})
 
     with open('result.json', 'w') as file:
         json.dump(result, file, indent=4)
