@@ -50,8 +50,8 @@ def KNN(mat, k):
 
 def batched_KNN(query, attributes, k):
     batch_size = query.size()[0]
-    val_list = torch.zeros(batch_size, 123, dtype=torch.float)
-    index_list = torch.zeros(batch_size, 123, dtype=torch.int)
+    val_list = torch.zeros(batch_size, dtype=torch.float)
+    index_list = torch.zeros(batch_size, dtype=torch.int)
     for i in range(batch_size):
         val, index = KNN(query[i] - attributes, k)
         val_list[i] = val
