@@ -151,6 +151,7 @@ def main():
 
         # Check if there was an improvement
         is_best = val_acc > best_acc
+        best_acc = max(best_acc, val_acc)
 
         if not is_best:
             epochs_since_improvement += 1
