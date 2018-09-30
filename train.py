@@ -17,9 +17,9 @@ def train(epoch, train_loader, model, optimizer):
     # Loss function
     criterion = nn.MSELoss().to(device)
 
-    batch_time = AverageMeter()  # forward prop. + back prop. time
-    losses = AverageMeter()  # loss (per word decoded)
-    accs = AverageMeter()  # accuracy
+    batch_time = ExpoAverageMeter()  # forward prop. + back prop. time
+    losses = ExpoAverageMeter()  # loss (per word decoded)
+    accs = ExpoAverageMeter()  # accuracy
 
     start = time.time()
 
@@ -75,9 +75,9 @@ def valid(val_loader, model):
     # Loss function
     criterion = nn.MSELoss().to(device)
 
-    batch_time = AverageMeter()  # forward prop. + back prop. time
-    losses = AverageMeter()  # loss (per word decoded)
-    accs = AverageMeter()  # accuracy
+    batch_time = ExpoAverageMeter()  # forward prop. + back prop. time
+    losses = ExpoAverageMeter()  # loss (per word decoded)
+    accs = ExpoAverageMeter()  # accuracy
 
     start = time.time()
 
