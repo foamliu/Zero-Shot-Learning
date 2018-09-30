@@ -33,5 +33,5 @@ zsl_a_animals_train_image_folder = os.path.join(zsl_a_animals_train_folder, 'zsl
 
 zsl_a_animals_train_annotations_labels = os.path.join(zsl_a_animals_train_folder,
                                                       'zsl_a_animals_train_annotations_labels_20180321.txt')
-zsl_a_animals_train_annotations_attributes_per_clas = os.path.join(zsl_a_animals_train_folder,
+zsl_a_animals_train_annotations_attributes_per_class = os.path.join(zsl_a_animals_train_folder,
                                                                    'zsl_a_animals_train_annotations_attributes_per_class_20180321.txt')

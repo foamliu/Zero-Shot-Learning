@@ -18,14 +18,14 @@ class ZslDataset(Dataset):
 
         if super_class == 'Animals':
             annotations_labels = zsl_a_animals_train_annotations_labels
-            annotations_attributes_per_clas = zsl_a_animals_train_annotations_attributes_per_clas
+            annotations_attributes_per_class = zsl_a_animals_train_annotations_attributes_per_class
             self.image_folder = zsl_a_animals_train_image_folder
 
         labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6])
         labels.columns = ['label_id', 'img_path']
         labels['label_id'] = labels['label_id'].str.strip()
         labels['img_path'] = labels['img_path'].str.strip()
-        attributes = pd.read_csv(annotations_attributes_per_clas, header=None)
+        attributes = pd.read_csv(annotations_attributes_per_class, header=None)
         attributes.columns = ['label_id', 'attributes']
         attributes['attributes'] = attributes['attributes'].str.strip()
 

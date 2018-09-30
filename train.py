@@ -29,9 +29,12 @@ def train(epoch, train_loader, model, optimizer):
 
         # Set device options
         img = img.to(device)
+        print(img.size())
         targets = attributes.to(device)
+        print(targets.size())
 
         scores = model(img)
+        print(scores.size())
 
         loss = criterion(scores, targets)
         loss.backward()
@@ -69,9 +72,9 @@ def valid(val_loader, model):
         for i_batch, (img, attributes) in enumerate(val_loader):
             # Set device options
             img = img.to(device)
-            targets = attributes.to(device)
+            targets = attributes.to(device)  # (batch_size, 123)
 
-            scores = model(img)
+            scores = model(img)  # (batch_size, 123)
 
             loss = criterion(scores, targets)
 
