@@ -29,12 +29,12 @@ def train(epoch, train_loader, model, optimizer):
 
         # Set device options
         img = img.to(device)
-        print(img.size())
+        # print(img.size())
         targets = attributes.to(device)
-        print(targets.size())
+        # print(targets.size())
 
         scores = model(img)
-        print(scores.size())
+        # print(scores.size())
 
         loss = criterion(scores, targets)
         print(loss.size())
