@@ -59,7 +59,7 @@ def main():
         label_name = 'Label_A_%02d' % (labal_id + 1,)
         print('labal_id: ' + str(labal_id))
         result.append(
-            {'i': i, 'labal_id': labal_id, 'label_name': label_name, 'embeded': embeded})
+            {'i': i, 'labal_id': labal_id, 'label_name': label_name, 'embeded': list(embeded.cpu().numpy())})
 
     with open('result.json', 'w') as file:
         json.dump(result, file, indent=4, ensure_ascii=False)
