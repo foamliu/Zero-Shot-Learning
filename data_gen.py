@@ -3,7 +3,8 @@ import torchvision.transforms as transforms
 from scipy.misc import imread, imresize
 from torch.utils.data import Dataset
 from tqdm import tqdm
-from config import label_name2idx
+
+from config import *
 from utils import *
 
 

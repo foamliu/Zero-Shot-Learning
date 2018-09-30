@@ -1,6 +1,9 @@
+import os
+
 import torch
 
-from config import *
+from config import attributes_per_class
+from config import device
 
 
 def ensure_folder(folder):
