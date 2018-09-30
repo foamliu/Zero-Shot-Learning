@@ -50,7 +50,7 @@ def parse_attributes(attr_str):
 # Cached data
 annotations_attributes_per_class = zsl_a_animals_train_annotations_attributes_per_class
 attributes = pd.read_csv(annotations_attributes_per_class, header=None)
-attributes.columns = ['label_id', 'attributes']
+attributes.columns = ['label_name', 'attributes']
 attributes['attributes'] = attributes['attributes'].str.strip()
 
 attributes_per_class = []
