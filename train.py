@@ -19,35 +19,39 @@ def train(epoch, train_loader, model, optimizer):
 
     batch_time = AverageMeter()  # forward prop. + back prop. time
     losses = AverageMeter()  # loss (per word decoded)
+    accs = AverageMeter()  # accuracy
 
     start = time.time()
 
     # Batches
-    for i_batch, (imgs, labels) in enumerate(train_loader):
+    for i_batch, (imgs, label_ids, attributes) in enumerate(train_loader):
         # Zero gradients
         optimizer.zero_grad()
 
         # Set device options
         imgs = imgs.to(device)
+        label_ids = label_ids.to(device)
         # print(img.size())
-        targets = labels.to(device)
-        print('targets: ' + str(targets))
-        print('targets.size(): ' + str(targets.size()))
+        attributes = attributes.to(device)
+        # print('targets: ' + str(targets))
+        # print('targets.size(): ' + str(targets.size()))
 
-        out = model(imgs)
-        val_list, index_list = batched_KNN(out, 1)
-        scores = index_list
-        print('scores: ' + str(scores))
-        print('scores.size(): ' + str(scores.size()))
+        preds = model(imgs)
+        _, scores = batched_KNN(preds, 1)
+        # print('scores: ' + str(scores))
+        # print('scores.size(): ' + str(scores.size()))
 
-        loss = criterion(scores, targets)
+        loss = criterion(preds, attributes)
         loss.backward()
 
         optimizer.step()
 
+        acc = accuracy(scores, label_ids)
+
         # Keep track of metrics
-        losses.update(loss.item())
+        losses.update(loss.item(), batch_size)
         batch_time.update(time.time() - start)
+        accs.update(acc, batch_size)
 
         start = time.time()
 
@@ -55,9 +59,11 @@ def train(epoch, train_loader, model, optimizer):
         if i_batch % print_freq == 0:
             print('Epoch: [{0}][{1}/{2}]\t'
                   'Batch Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                  'Loss {loss.val:.4f} ({loss.avg:.4f})\t'.format(epoch, i_batch, len(train_loader),
-                                                                  batch_time=batch_time,
-                                                                  loss=losses))
+                  'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                  'Accuracy {accs.val:.3f} ({accs.avg:.3f})'.format(epoch, i_batch, len(train_loader),
+                                                                    batch_time=batch_time,
+                                                                    loss=losses,
+                                                                    accs=accs))
 
 
 def valid(val_loader, model):
@@ -68,23 +74,29 @@ def valid(val_loader, model):
 
     batch_time = AverageMeter()  # forward prop. + back prop. time
     losses = AverageMeter()  # loss (per word decoded)
+    accs = AverageMeter()  # accuracy
 
     start = time.time()
 
     with torch.no_grad():
         # Batches
-        for i_batch, (img, attributes) in enumerate(val_loader):
+        for i_batch, (imgs, label_ids, attributes) in enumerate(val_loader):
             # Set device options
-            img = img.to(device)
-            targets = attributes.to(device)  # (batch_size, 123)
+            imgs = imgs.to(device)
+            label_ids = label_ids.to(device)
+            attributes = attributes.to(device)  # (batch_size, 123)
 
-            scores = model(img)  # (batch_size, 123)
+            preds = model(imgs)  # (batch_size, 123)
 
-            loss = criterion(scores, targets)
+            loss = criterion(preds, attributes)
+
+            _, scores = batched_KNN(preds, 1)
+            acc = accuracy(scores, label_ids)
 
             # Keep track of metrics
             losses.update(loss.item())
             batch_time.update(time.time() - start)
+            accs.update(acc, batch_size)
 
             start = time.time()
 
@@ -92,9 +104,11 @@ def valid(val_loader, model):
             if i_batch % print_freq == 0:
                 print('Validation: [{0}/{1}]\t'
                       'Batch Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t'
-                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'.format(i_batch, len(val_loader),
-                                                                      batch_time=batch_time,
-                                                                      loss=losses))
+                      'Loss {loss.val:.4f} ({loss.avg:.4f})\t'
+                      'Accuracy {accs.val:.3f} ({accs.avg:.3f})'.format(i_batch, len(val_loader),
+                                                                        batch_time=batch_time,
+                                                                        loss=losses,
+                                                                        accs=accs))
 
     return losses.avg
 

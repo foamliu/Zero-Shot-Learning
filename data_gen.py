@@ -42,11 +42,7 @@ class ZslDataset(Dataset):
         self.transform = transforms.Compose([normalize])
 
     def __getitem__(self, i):
-        label_name = self.samples['label_name'][self.start_index + i]
-        label_id = label_name2idx[label_name]
         img_path = self.samples['img_path'][self.start_index + i]
-        # attributes = parse_attributes(self.samples['attributes'][self.start_index + i])
-
         path = os.path.join(self.image_folder, img_path)
         # Read images
         img = imread(path)
@@ -57,9 +53,15 @@ class ZslDataset(Dataset):
         img = torch.FloatTensor(img / 255.)
         if self.transform is not None:
             img = self.transform(img)
-        # attributes = torch.FloatTensor(attributes)
 
-        return img, label_id
+        label_name = self.samples['label_name'][self.start_index + i]
+        label_id = label_name2idx[label_name]
+        label_id = torch.FloatTensor(label_id)
+
+        attribute = parse_attributes(self.samples['attributes'][self.start_index + i])
+        attribute = torch.FloatTensor(attribute)
+
+        return img, label_id, attribute
 
     def __len__(self):
         return self.samples.shape[0]
