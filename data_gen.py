@@ -2,7 +2,6 @@ import numpy as np
 import torchvision.transforms as transforms
 from scipy.misc import imread, imresize
 from torch.utils.data import Dataset
-from tqdm import tqdm
 
 from config import *
 from utils import *
@@ -29,6 +28,8 @@ class ZslDataset(Dataset):
         attributes_per_class['attributes'] = attributes_per_class['attributes'].str.strip()
 
         samples = pd.merge(annotations_labels, attributes_per_class, on='label_name')
+        # Shuffle DataFrame rows
+        samples = samples.sample(frac=1).reset_index(drop=True)
         train_count = int(len(samples) * train_split)
 
         if split == 'train':
@@ -68,4 +69,3 @@ class ZslDataset(Dataset):
 
     def __len__(self):
         return self.samples.shape[0]
-
