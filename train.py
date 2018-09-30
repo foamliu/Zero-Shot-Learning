@@ -86,7 +86,7 @@ def valid(val_loader, model):
         for i_batch, (imgs, label_ids, attributes) in enumerate(val_loader):
             # Set device options
             imgs = imgs.to(device)
-            label_ids = label_ids.to(device)
+            label_ids = label_ids.view(-1).to(device)
             attributes = attributes.to(device)  # (batch_size, 123)
 
             preds = model(imgs)  # (batch_size, 123)
