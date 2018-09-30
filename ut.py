@@ -25,7 +25,10 @@ class TestStringMethods(unittest.TestCase):
         test_attr = torch.tensor(test_attr)
         print(test_attr.size())
 
-        val, index = KNN(test_attr - attributes_per_class, 1)
+        diff = test_attr - attributes_per_class
+        print(diff.size())
+
+        val, index = KNN(diff, 1)
         print(val, index)
 
         self.assertEqual(index, 0)
