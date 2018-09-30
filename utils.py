@@ -112,4 +112,5 @@ def get_label_list():
     for i in range(len(labels)):
         label_list.append(labels['cat_name_zh'][i])
 
+    print('len(label_list): ' + str(len(label_list)))
     return label_list

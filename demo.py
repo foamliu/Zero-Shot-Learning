@@ -55,8 +55,8 @@ def main():
 
     for i in range(batch_size):
         embeded = preds[i]
-        print('embeded: ' + str(embeded))
-        score = scores[i]
+        #print('embeded: ' + str(embeded))
+        score = scores[i].item()
         print('score: ' + str(score))
         result.append({'i': i, 'cat_name_zh': label_list[score]})
 
