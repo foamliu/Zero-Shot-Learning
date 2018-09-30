@@ -30,10 +30,12 @@ def train(epoch, train_loader, model, optimizer):
         imgs = imgs.to(device)
         # print(img.size())
         targets = labels.to(device)
+        print('targets: ' + str(targets))
         print('targets.size(): ' + str(targets.size()))
 
         out = model(imgs)
         scores = batched_KNN(out, 1)
+        print('scores: ' + str(scores))
         print('scores.size(): ' + str(scores.size()))
 
         loss = criterion(scores, targets)
