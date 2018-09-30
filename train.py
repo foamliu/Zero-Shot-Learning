@@ -32,7 +32,7 @@ def train(epoch, train_loader, model, optimizer):
         imgs = imgs.to(device)
         # print(img.size())
         label_ids = label_ids.view(-1).to(device)
-        # print('label_ids: ' + str(label_ids))
+        print('label_ids: ' + str(label_ids))
         # print('label_ids.size(): ' + str(label_ids.size()))
         attributes = attributes.to(device)
         # print('targets: ' + str(targets))
@@ -40,7 +40,7 @@ def train(epoch, train_loader, model, optimizer):
 
         preds = model(imgs)
         _, scores = batched_KNN(preds, 1)
-        # print('scores: ' + str(scores))
+        print('scores: ' + str(scores))
         # print('scores.size(): ' + str(scores.size()))
 
         loss = criterion(preds, attributes)
@@ -49,11 +49,12 @@ def train(epoch, train_loader, model, optimizer):
         optimizer.step()
 
         acc = accuracy(scores, label_ids)
+        print('acc: ' + str(acc))
 
         # Keep track of metrics
-        losses.update(loss.item(), batch_size)
+        losses.update(loss.item())
         batch_time.update(time.time() - start)
-        accs.update(acc, batch_size)
+        accs.update(acc)
 
         start = time.time()
 
