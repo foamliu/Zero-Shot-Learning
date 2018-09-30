@@ -13,7 +13,8 @@ def main():
     # Load model
     checkpoint = torch.load(checkpoint)
     model = checkpoint['model']
-    model = model.to(device)
+    # model = model.to(device)
+    model = model.cuda()
     model.eval()
 
     files = [os.path.join(zsl_a_animals_test_folder, file) for file in os.listdir(zsl_a_animals_test_folder) if
