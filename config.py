@@ -65,6 +65,7 @@ annotations_labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6]
 annotations_labels.columns = ['label_name', 'img_path']
 annotations_labels['label_name'] = annotations_labels['label_name'].str.strip()
 annotations_labels['img_path'] = annotations_labels['img_path'].str.strip()
+
 label_name2idx = dict()
-for i in range(len(annotations_labels)):
-    label_name2idx[annotations_labels['label_name'][i]] = i
+for i in range(len(attributes_per_class)):
+    label_name2idx[attributes_per_class['label_name'][i]] = i
