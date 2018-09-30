@@ -40,7 +40,7 @@ def train(epoch, train_loader, model, optimizer):
         preds = model(imgs)
         _, scores = batched_KNN(preds, 1)
         # print('scores: ' + str(scores))
-        # print('scores.size(): ' + str(scores.size()))
+        print('scores.size(): ' + str(scores.size()))
 
         loss = criterion(preds, attributes)
         loss.backward()
