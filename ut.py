@@ -62,6 +62,7 @@ class TestStringMethods(unittest.TestCase):
         scores = torch.tensor([34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34], device=device)
         acc = accuracy(scores, targets)
         print('acc: ' + str(acc))
+        self.assertEqual(acc, 6.25)
 
 
 if __name__ == '__main__':
