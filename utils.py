@@ -48,3 +48,9 @@ def KNN(mat, k):
     # k+1 because the nearest must be itself
     val, index = dist_col.topk(k, largest=False, sorted=True)
     return val, index
+
+def KNN2(vec, mat, k):
+    dist = torch.dist(vec, mat)
+    print(dist.size())
+    val, index = dist.topk(k, largest=False, sorted=True)
+    return val, index
