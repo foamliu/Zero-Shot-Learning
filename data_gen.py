@@ -37,8 +37,7 @@ class ZslDataset(Dataset):
             self.samples = samples[train_count:]
             self.start_index = train_count
 
-        normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                         std=[0.229, 0.224, 0.225])
+        normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
         self.transform = transforms.Compose([normalize])
 
     def __getitem__(self, i):
