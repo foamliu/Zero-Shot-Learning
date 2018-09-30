@@ -1,5 +1,6 @@
 import os
 
+import pandas as pd
 import torch
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -34,4 +35,26 @@ zsl_a_animals_train_image_folder = os.path.join(zsl_a_animals_train_folder, 'zsl
 zsl_a_animals_train_annotations_labels = os.path.join(zsl_a_animals_train_folder,
                                                       'zsl_a_animals_train_annotations_labels_20180321.txt')
 zsl_a_animals_train_annotations_attributes_per_class = os.path.join(zsl_a_animals_train_folder,
-                                                                   'zsl_a_animals_train_annotations_attributes_per_class_20180321.txt')
+                                                                    'zsl_a_animals_train_annotations_attributes_per_class_20180321.txt')
+
+
+def parse_attributes(attr_str):
+    tokens = attr_str.split(' ')
+    attr_list = []
+    for i in range(1, len(tokens) - 1):
+        attr_list.append(float(tokens[i]))
+
+    return attr_list
+
+
+# Cached data
+annotations_attributes_per_class = zsl_a_animals_train_annotations_attributes_per_class
+attributes = pd.read_csv(annotations_attributes_per_class, header=None)
+attributes.columns = ['label_id', 'attributes']
+attributes['attributes'] = attributes['attributes'].str.strip()
+
+attributes_per_class = []
+for i in range(len(attributes)):
+    attributes_per_class.append(parse_attributes(attributes['attributes'][i]))
+attributes_per_class = torch.tensor(attributes_per_class)
+# print(attributes_per_class.size())

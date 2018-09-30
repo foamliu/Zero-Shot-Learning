@@ -1,20 +1,11 @@
-import os
-
 import torch
+
+from config import *
 
 
 def ensure_folder(folder):
     if not os.path.exists(folder):
         os.makedirs(folder)
-
-
-def parse_attributes(attr_str):
-    tokens = attr_str.split(' ')
-    attr_list = []
-    for i in range(1, len(tokens) - 1):
-        attr_list.append(float(tokens[i]))
-
-    return attr_list
 
 
 class AverageMeter(object):
@@ -48,7 +39,8 @@ def KNN(mat, k):
     return val, index
 
 
-def batched_KNN(query, attributes, k):
+def batched_KNN(query, k):
+    attributes = attributes_per_class
     batch_size = query.size()[0]
     val_list = torch.zeros(batch_size, dtype=torch.float)
     index_list = torch.zeros(batch_size, dtype=torch.int)

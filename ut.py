@@ -1,26 +1,13 @@
 import unittest
 
 import numpy as np
-import pandas as pd
 
-from config import *
 from utils import *
 
 
 class TestStringMethods(unittest.TestCase):
 
     def test_KNN(self):
-        annotations_attributes_per_class = zsl_a_animals_train_annotations_attributes_per_class
-        attributes = pd.read_csv(annotations_attributes_per_class, header=None)
-        attributes.columns = ['label_id', 'attributes']
-        attributes['attributes'] = attributes['attributes'].str.strip()
-
-        attributes_per_class = []
-        for i in range(len(attributes)):
-            attributes_per_class.append(parse_attributes(attributes['attributes'][i]))
-        attributes_per_class = torch.tensor(attributes_per_class)
-        # print(attributes_per_class.size())
-
         test_attr_1 = parse_attributes(
             '[ 1.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 1.00 1.00 0.00 0.00 1.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 1.00 0.00 1.00 1.00 0.00 1.00 1.00 0.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 1.00 0.00 1.00 0.00 1.00 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 1.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 ]')
         test_attr_1 = torch.tensor(test_attr_1)
@@ -53,16 +40,6 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(index.item(), 43)
 
     def test_batched_KNN(self):
-        annotations_attributes_per_class = zsl_a_animals_train_annotations_attributes_per_class
-        attributes = pd.read_csv(annotations_attributes_per_class, header=None)
-        attributes.columns = ['label_id', 'attributes']
-        attributes['attributes'] = attributes['attributes'].str.strip()
-
-        attributes_per_class = []
-        for i in range(len(attributes)):
-            attributes_per_class.append(parse_attributes(attributes['attributes'][i]))
-        attributes_per_class = torch.tensor(attributes_per_class)
-
         mat = [parse_attributes(
             '[ 1.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 1.00 1.00 0.00 0.00 1.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 1.00 0.00 1.00 1.00 0.00 1.00 1.00 0.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 1.00 0.00 1.00 0.00 1.00 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 1.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 ]'),
             parse_attributes(
@@ -75,7 +52,7 @@ class TestStringMethods(unittest.TestCase):
                 '[ 0.00 0.00 0.00 0.00 1.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 1.00 0.00 0.00 0.00 1.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 1.00 0.00 1.00 0.00 1.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 1.00 0.00 1.00 0.00 0.00 1.00 1.00 0.00 0.00 1.00 0.00 0.00 1.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 ]')
         ]
         mat = torch.tensor(mat)
-        val_list, index_list = batched_KNN(mat, attributes_per_class, 1)
+        val_list, index_list = batched_KNN(mat, 1)
         print(index_list)
         self.assertTrue(np.array_equal(index_list.numpy(), np.array([5, 10, 27, 36, 43])))
 
