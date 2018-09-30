@@ -58,7 +58,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertTrue(np.array_equal(index_list.cpu().numpy(), np.array([5, 10, 27, 36, 43])))
 
     def test_accuracy(self):
-        targets = torch.tensor([12, 35, 15, 3, 37, 18, 42, 46, 16, 39, 37, 47, 48, 44, 16, 10], device=device)
+        targets = torch.tensor([12, 34, 15, 3, 37, 18, 42, 46, 16, 39, 37, 47, 48, 44, 16, 10], device=device)
         scores = torch.tensor([34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34, 34], device=device)
         acc = accuracy(scores, targets)
         print('acc: ' + str(acc))
