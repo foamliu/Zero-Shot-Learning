@@ -57,3 +57,11 @@ def batched_KNN(query, k):
         val_list[i] = val
         index_list[i] = index
     return val_list, index_list
+
+
+def accuracy(scores, targets):
+    batch_size = targets.size(0)
+    correct = scores.eq(targets)
+    print('correct: ' + str(correct))
+    correct_total = correct.view(-1).float().sum()  # 0D tensor
+    return correct_total.item() * (100.0 / batch_size)
