@@ -48,7 +48,11 @@ def batched_KNN(query, k):
     val_list = torch.zeros(batch_size, dtype=torch.float)
     index_list = torch.zeros(batch_size, dtype=torch.int)
     for i in range(batch_size):
-        diff = torch.tensor(query[i] - attributes).to(device)
+        q = query[i].to(device)
+        attributes = attributes.to(device)
+        diff = q - attributes
+        diff = torch.tensor(diff)
+        diff = diff.to(device)
         val, index = KNN(diff, k)
         val_list[i] = val
         index_list[i] = index
