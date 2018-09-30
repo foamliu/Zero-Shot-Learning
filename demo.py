@@ -23,9 +23,11 @@ def main():
 
     files = [os.path.join(zsl_a_animals_test_folder, file) for file in os.listdir(zsl_a_animals_test_folder) if
              file.lower().endswith('.jpg')]
-    samples = random.sample(files, 10)
 
-    imgs = torch.zeros([10, 3, 224, 224], dtype=torch.float, device=device)
+    num_test_samples = 50
+    samples = random.sample(files, num_test_samples)
+
+    imgs = torch.zeros([num_test_samples, 3, 224, 224], dtype=torch.float, device=device)
 
     for i, path in enumerate(samples):
         # Read images
@@ -50,14 +52,14 @@ def main():
 
     _, scores = batched_KNN(preds, 1)
 
-    batch_size = preds.size()[0]
-
-    for i in range(batch_size):
+    for i in range(num_test_samples):
         embeded = preds[i]
         # print('embeded: ' + str(embeded))
-        score = scores[i].item()
-        print('score: ' + str(score))
-        result.append({'i': i, 'score': score})
+        labal_id = scores[i].item()
+        label_name = 'Label_A_%02d' % (labal_id + 1,)
+        print('labal_id: ' + str(labal_id))
+        result.append(
+            {'i': i, 'labal_id': labal_id, 'label_name': label_name, 'embeded': embeded})
 
     with open('result.json', 'w') as file:
         json.dump(result, file, indent=4, ensure_ascii=False)
