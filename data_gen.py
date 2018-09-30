@@ -3,7 +3,7 @@ import torchvision.transforms as transforms
 from scipy.misc import imread, imresize
 from torch.utils.data import Dataset
 from tqdm import tqdm
-
+from config import label_name2idx
 from utils import *
 
 
@@ -20,14 +20,14 @@ class ZslDataset(Dataset):
             self.image_folder = zsl_a_animals_train_image_folder
 
         annotations_labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6])
-        annotations_labels.columns = ['label_id', 'img_path']
-        annotations_labels['label_id'] = annotations_labels['label_id'].str.strip()
+        annotations_labels.columns = ['label_name', 'img_path']
+        annotations_labels['label_name'] = annotations_labels['label_name'].str.strip()
         annotations_labels['img_path'] = annotations_labels['img_path'].str.strip()
         attributes_per_class = pd.read_csv(annotations_attributes_per_class, header=None)
-        attributes_per_class.columns = ['label_id', 'attributes']
+        attributes_per_class.columns = ['label_name', 'attributes']
         attributes_per_class['attributes'] = attributes_per_class['attributes'].str.strip()
 
-        samples = pd.merge(annotations_labels, attributes_per_class, on='label_id')
+        samples = pd.merge(annotations_labels, attributes_per_class, on='label_name')
         train_count = int(len(samples) * train_split)
 
         if split == 'train':
@@ -41,8 +41,10 @@ class ZslDataset(Dataset):
         self.transform = transforms.Compose([normalize])
 
     def __getitem__(self, i):
+        label_name = self.samples['label_name'][self.start_index + i]
+        label_id = label_name2idx[label_name]
         img_path = self.samples['img_path'][self.start_index + i]
-        attributes = parse_attributes(self.samples['attributes'][self.start_index + i])
+        # attributes = parse_attributes(self.samples['attributes'][self.start_index + i])
 
         path = os.path.join(self.image_folder, img_path)
         # Read images
@@ -54,9 +56,9 @@ class ZslDataset(Dataset):
         img = torch.FloatTensor(img / 255.)
         if self.transform is not None:
             img = self.transform(img)
-        attributes = torch.FloatTensor(attributes)
+        # attributes = torch.FloatTensor(attributes)
 
-        return img, np.array(attributes)
+        return img, label_id
 
     def __len__(self):
         return self.samples.shape[0]

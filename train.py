@@ -22,18 +22,19 @@ def train(epoch, train_loader, model, optimizer):
     start = time.time()
 
     # Batches
-    for i_batch, (img, attributes) in enumerate(train_loader):
+    for i_batch, (imgs, labels) in enumerate(train_loader):
         # Zero gradients
         optimizer.zero_grad()
 
         # Set device options
-        img = img.to(device)
+        imgs = imgs.to(device)
         # print(img.size())
-        targets = attributes.to(device)
-        # print(targets.size())
+        targets = labels.to(device)
+        print('targets.size(): ' + str(targets.size()))
 
-        scores = model(img)
-        # print(scores.size())
+        out = model(imgs)
+        scores = batched_KNN(out, 1)
+        print('scores.size(): ' + str(scores.size()))
 
         loss = criterion(scores, targets)
         loss.backward()
