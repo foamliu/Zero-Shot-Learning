@@ -55,7 +55,7 @@ class TestStringMethods(unittest.TestCase):
         mat = torch.tensor(mat)
         val_list, index_list = batched_KNN(mat, 1)
         print(index_list)
-        self.assertTrue(np.array_equal(index_list.numpy(), np.array([5, 10, 27, 36, 43])))
+        self.assertTrue(np.array_equal(index_list.cpu().numpy(), np.array([5, 10, 27, 36, 43])))
 
 
 if __name__ == '__main__':
