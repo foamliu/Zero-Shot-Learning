@@ -1,8 +1,10 @@
 import unittest
 
 import numpy as np
+from tqdm import tqdm
 
 from config import *
+from data_gen import ZslDataset
 from utils import *
 
 
@@ -63,6 +65,31 @@ class TestStringMethods(unittest.TestCase):
         acc = accuracy(scores, targets)
         print('acc: ' + str(acc))
         self.assertEqual(acc, 6.25)
+
+    def test_data_gen(self):
+        train_data = ZslDataset('Animals', 'train')
+        print(len(train_data))
+        img, label_id, attribute = train_data[0]
+        print('img.size(): ' + str(img.size()))
+        print('label_id: ' + str(label_id))
+
+        print('Checking train data attributes...')
+        for i in tqdm(range(len(train_data))):
+            img, label_id, attribute = train_data[i]
+            self.assertEqual(len(attribute), 123)
+        print('DONE')
+
+        val_data = ZslDataset('Animals', 'valid')
+        print(len(val_data))
+        img, label_id, attribute = val_data[0]
+        print('img.size(): ' + str(img.size()))
+        print('label_id: ' + str(label_id))
+
+        print('Checking valid data attributes...')
+        for i in tqdm(range(len(val_data))):
+            img, label_id, attribute = val_data[i]
+            self.assertEqual(len(attribute), 123)
+        print('DONE')
 
 
 if __name__ == '__main__':

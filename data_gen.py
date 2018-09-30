@@ -66,24 +66,3 @@ class ZslDataset(Dataset):
     def __len__(self):
         return self.samples.shape[0]
 
-
-if __name__ == '__main__':
-    train_data = ZslDataset('Animals', 'train')
-    print(len(train_data))
-    print(train_data[0])
-
-    print('Checking train data attributes...')
-    for i in tqdm(range(len(train_data))):
-        img_path, label_id, attribute = train_data[i]
-        assert len(attribute) == 123
-    print('DONE')
-
-    val_data = ZslDataset('Animals', 'valid')
-    print(len(val_data))
-    print(val_data[0])
-
-    print('Checking valid data attributes...')
-    for i in tqdm(range(len(val_data))):
-        img_path, label_id, attribute = val_data[i]
-        assert len(attribute) == 123
-    print('DONE')
