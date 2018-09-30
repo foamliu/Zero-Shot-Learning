@@ -81,3 +81,20 @@ def accuracy(scores, targets):
     # print('correct: ' + str(correct))
     correct_total = correct.view(-1).float().sum()  # 0D tensor
     return correct_total.item() * (100.0 / batch_size)
+
+
+def save_checkpoint(epoch, model, optimizer, val_acc, is_best):
+    state = {'model': model,
+             'optimizer': optimizer}
+    filename = 'checkpoint_{}_{}.tar'.format(epoch, val_acc)
+    torch.save(state, filename)
+    # If this checkpoint is the best so far, store a copy so it doesn't get overwritten by a worse checkpoint
+    if is_best:
+        torch.save(state, 'BEST_' + filename)
+
+
+def adjust_learning_rate(optimizer, shrink_factor):
+    print("\nDECAYING learning rate.")
+    for param_group in optimizer.param_groups:
+        param_group['lr'] = param_group['lr'] * shrink_factor
+    print("The new learning rate is %f\n" % (optimizer.param_groups[0]['lr'],))

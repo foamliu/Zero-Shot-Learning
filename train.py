@@ -131,14 +131,35 @@ def main():
     # Initialize optimizers
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
+    best_acc = 0
+    epochs_since_improvement = 0
+
     # Epochs
     for epoch in range(start_epoch, epochs):
-        # One epoch's training
+        # Decay learning rate if there is no improvement for 8 consecutive epochs, and terminate training after 20
+        if epochs_since_improvement == 20:
+            break
+        if epochs_since_improvement > 0 and epochs_since_improvement % 8 == 0:
+            adjust_learning_rate(optimizer, 0.8)
 
+        # One epoch's training
         train(epoch, train_loader, model, optimizer)
 
+        # One epoch's validation
         val_acc, val_loss = valid(val_loader, model)
         print('\n * ACCURACY - {acc:.3f}, LOSS - {loss:.3f}\n'.format(acc=val_acc, loss=val_loss))
+
+        # Check if there was an improvement
+        is_best = val_acc > best_acc
+
+        if not is_best:
+            epochs_since_improvement += 1
+            print("\nEpochs since last improvement: %d\n" % (epochs_since_improvement,))
+        else:
+            epochs_since_improvement = 0
+
+        # Save checkpoint
+        save_checkpoint(epoch, model, optimizer, val_acc, is_best)
 
 
 if __name__ == '__main__':
