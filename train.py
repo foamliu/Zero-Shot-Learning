@@ -35,7 +35,8 @@ def train(epoch, train_loader, model, optimizer):
         print('targets.size(): ' + str(targets.size()))
 
         out = model(imgs)
-        scores = batched_KNN(out, 1)
+        val_list, index_list = batched_KNN(out, 1)
+        scores = index_list
         print('scores: ' + str(scores))
         print('scores.size(): ' + str(scores.size()))
 

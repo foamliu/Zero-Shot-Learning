@@ -45,8 +45,8 @@ def KNN(mat, k):
 def batched_KNN(query, k):
     attributes = attributes_per_class
     batch_size = query.size()[0]
-    val_list = torch.zeros(batch_size, dtype=torch.float)
-    index_list = torch.zeros(batch_size, dtype=torch.int)
+    val_list = torch.zeros(batch_size, dtype=torch.float, device=device)
+    index_list = torch.zeros(batch_size, dtype=torch.int, device=device)
     for i in range(batch_size):
         q = query[i].to(device)
         attributes = attributes.to(device)
