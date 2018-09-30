@@ -22,8 +22,7 @@ def main():
              file.lower().endswith('.jpg')]
     samples = random.sample(files, 10)
 
-    imgs = torch.zeros([10, 3, 224, 224], dtype=torch.float)
-
+    imgs = np.empty((10, 3, 224, 224), dtype=np.float32)
 
     for i, path in enumerate(samples):
         # Read images
@@ -37,6 +36,7 @@ def main():
         img = torch.FloatTensor(img / 255.)
         imgs[i] = img
 
+    imgs = torch.tensor(imgs)
     imgs.to(device)
 
     result = []
