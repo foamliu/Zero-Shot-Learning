@@ -13,7 +13,7 @@ def main():
     # Load model
     checkpoint = torch.load(checkpoint)
     model = checkpoint['model']
-    # model = model.to(device)
+    model = model.to(device)
     model.eval()
 
     files = [os.path.join(zsl_a_animals_test_folder, file) for file in os.listdir(zsl_a_animals_test_folder) if
@@ -21,7 +21,7 @@ def main():
     samples = random.sample(files, 10)
 
     imgs = torch.zeros([10, 3, 224, 224], dtype=torch.float)
-    # imgs.to(device)
+
 
     for i, path in enumerate(samples):
         # Read images
@@ -34,6 +34,8 @@ def main():
         assert np.max(img) <= 255
         img = torch.FloatTensor(img / 255.)
         imgs[i] = img
+
+    imgs.to(device)
 
     result = []
     preds = model(imgs)
