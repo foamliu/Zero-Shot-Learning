@@ -49,7 +49,7 @@ def train(epoch, train_loader, model, optimizer):
         optimizer.step()
 
         acc = accuracy(scores, label_ids)
-        print('acc: ' + str(acc))
+        # print('acc: ' + str(acc))
 
         # Keep track of metrics
         losses.update(loss.item())
