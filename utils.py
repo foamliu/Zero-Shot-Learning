@@ -86,7 +86,7 @@ def accuracy(scores, targets):
 def save_checkpoint(epoch, model, optimizer, val_acc, is_best):
     state = {'model': model,
              'optimizer': optimizer}
-    filename = 'checkpoint_{0}_{1.3f}.tar'.format(epoch, val_acc)
+    filename = 'checkpoint_{0}_{1:.3f}.tar'.format(epoch, val_acc)
     torch.save(state, filename)
     # If this checkpoint is the best so far, store a copy so it doesn't get overwritten by a worse checkpoint
     if is_best:
