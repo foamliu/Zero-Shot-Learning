@@ -19,15 +19,15 @@ class ZslDataset(Dataset):
             annotations_attributes_per_class = zsl_a_animals_train_annotations_attributes_per_class
             self.image_folder = zsl_a_animals_train_image_folder
 
-        labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6])
-        labels.columns = ['label_id', 'img_path']
-        labels['label_id'] = labels['label_id'].str.strip()
-        labels['img_path'] = labels['img_path'].str.strip()
-        attributes = pd.read_csv(annotations_attributes_per_class, header=None)
-        attributes.columns = ['label_id', 'attributes']
-        attributes['attributes'] = attributes['attributes'].str.strip()
+        annotations_labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6])
+        annotations_labels.columns = ['label_id', 'img_path']
+        annotations_labels['label_id'] = annotations_labels['label_id'].str.strip()
+        annotations_labels['img_path'] = annotations_labels['img_path'].str.strip()
+        attributes_per_class = pd.read_csv(annotations_attributes_per_class, header=None)
+        attributes_per_class.columns = ['label_id', 'attributes']
+        attributes_per_class['attributes'] = attributes_per_class['attributes'].str.strip()
 
-        samples = pd.merge(labels, attributes, on='label_id')
+        samples = pd.merge(annotations_labels, attributes_per_class, on='label_id')
         train_count = int(len(samples) * train_split)
 
         if split == 'train':

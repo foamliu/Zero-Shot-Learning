@@ -36,7 +36,6 @@ def train(epoch, train_loader, model, optimizer):
         # print(scores.size())
 
         loss = criterion(scores, targets)
-        print(loss.size())
         loss.backward()
 
         optimizer.step()
@@ -92,7 +91,7 @@ def valid(val_loader, model):
                                                                       batch_time=batch_time,
                                                                       loss=losses))
 
-    return loss
+    return losses.avg
 
 
 def main():
