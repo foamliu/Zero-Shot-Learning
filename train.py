@@ -113,7 +113,7 @@ def valid(val_loader, model):
                                                                         loss=losses,
                                                                         accs=accs))
 
-    return losses.avg
+    return accs.avg, losses.avg
 
 
 def main():
@@ -137,8 +137,8 @@ def main():
 
         train(epoch, train_loader, model, optimizer)
 
-        val_loss = valid(val_loader, model)
-        print('\n * LOSS - {loss:.3f}\n'.format(loss=val_loss))
+        val_acc, val_loss = valid(val_loader, model)
+        print('\n * ACCURACY - {acc:.3f}, LOSS - {loss:.3f}\n'.format(acc=val_acc, loss=val_loss))
 
 
 if __name__ == '__main__':
