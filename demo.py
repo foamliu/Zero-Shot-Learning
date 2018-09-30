@@ -16,6 +16,7 @@ def main():
     # model = model.to(device)
     model = model.cuda()
     model.eval()
+    print(model)
 
     files = [os.path.join(zsl_a_animals_test_folder, file) for file in os.listdir(zsl_a_animals_test_folder) if
              file.lower().endswith('.jpg')]
