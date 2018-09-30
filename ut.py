@@ -2,6 +2,7 @@ import unittest
 
 import numpy as np
 
+from config import *
 from utils import *
 
 
