@@ -1,5 +1,7 @@
 import os
 
+import torch
+
 
 def ensure_folder(folder):
     if not os.path.exists(folder):
@@ -34,3 +36,15 @@ class AverageMeter(object):
         self.sum += val * n
         self.count += n
         self.avg = self.sum / self.count
+
+
+def KNN(mat, k):
+    mat = mat.float()
+    mat_square = torch.mm(mat, mat.t())
+    diag = torch.diagonal(mat_square)
+    diag = diag.expand_as(mat_square)
+    dist_mat = (diag + diag.t() - 2 * mat_square)
+    dist_col = dist_mat[-1, :-1]
+    # k+1 because the nearest must be itself
+    val, index = dist_col.topk(k, largest=False, sorted=True)
+    return val, index
