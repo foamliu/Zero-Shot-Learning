@@ -1,7 +1,8 @@
 import json
 import random
-import torchvision.transforms as transforms
+
 import numpy as np
+import torchvision.transforms as transforms
 from scipy.misc import imread, imresize, imsave
 
 from config import *
@@ -44,7 +45,9 @@ def main():
     imgs.to(device)
 
     result = []
-    preds = model(imgs)
+    with torch.no_grad():
+        preds = model(imgs)
+
     _, scores = batched_KNN(preds, 1)
 
     batch_size = preds.size()[0]
