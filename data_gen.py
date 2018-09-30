@@ -74,8 +74,8 @@ if __name__ == '__main__':
 
     print('Checking train data attributes...')
     for i in tqdm(range(len(train_data))):
-        img_path, attributes = train_data[i]
-        assert len(attributes) == 123
+        img_path, label_id, attribute = train_data[i]
+        assert len(attribute) == 123
     print('DONE')
 
     val_data = ZslDataset('Animals', 'valid')
@@ -84,6 +84,6 @@ if __name__ == '__main__':
 
     print('Checking valid data attributes...')
     for i in tqdm(range(len(val_data))):
-        img_path, attributes = val_data[i]
-        assert len(attributes) == 123
+        img_path, label_id, attribute = val_data[i]
+        assert len(attribute) == 123
     print('DONE')
