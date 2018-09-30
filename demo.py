@@ -32,7 +32,7 @@ def main():
         img = img.transpose(2, 0, 1)
         assert img.shape == (3, 224, 224)
         assert np.max(img) <= 255
-        img = torch.FloatTensor(img / 255., device=device)
+        img = torch.FloatTensor(img / 255.)
         imgs[i] = img
 
     result = []
