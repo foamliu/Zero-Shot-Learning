@@ -1,42 +1,42 @@
 [
     {
-        "cat_name_zh": "\u725b",
-        "i": 0
+        "i": 0,
+        "score": 35
     },
     {
-        "cat_name_zh": "\u72d7",
-        "i": 1
+        "i": 1,
+        "score": 0
     },
     {
-        "cat_name_zh": "\u7334\u5b50",
-        "i": 2
+        "i": 2,
+        "score": 15
     },
     {
-        "cat_name_zh": "\u9ebb\u96c0",
-        "i": 3
+        "i": 3,
+        "score": 12
     },
     {
-        "cat_name_zh": "\u9e2d\u5b50",
-        "i": 4
+        "i": 4,
+        "score": 0
     },
     {
-        "cat_name_zh": "\u725b",
-        "i": 5
+        "i": 5,
+        "score": 23
     },
     {
-        "cat_name_zh": "\u9e2d\u5b50",
-        "i": 6
+        "i": 6,
+        "score": 0
     },
     {
-        "cat_name_zh": "\u9f20",
-        "i": 7
+        "i": 7,
+        "score": 41
     },
     {
-        "cat_name_zh": "\u72d7",
-        "i": 8
+        "i": 8,
+        "score": 29
     },
     {
-        "cat_name_zh": "\u9e35\u9e1f",
-        "i": 9
+        "i": 9,
+        "score": 36
     }
 ]
