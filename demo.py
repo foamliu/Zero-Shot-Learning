@@ -41,7 +41,7 @@ def main():
         imgs[i] = img
 
     imgs = torch.tensor(imgs)
-    imgs.to(device)
+    imgs.to(torch.device("cuda"))
     print('imgs.device: ' + str(imgs.device))
 
     result = []
