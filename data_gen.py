@@ -59,7 +59,7 @@ class ZslDataset(Dataset):
         label_id = label_name2idx[label_name]
         # print('label_id: ' + str(label_id))
         label_id = torch.FloatTensor([label_id])
-        print('label_id: ' + str(label_id))
+        # print('label_id: ' + str(label_id))
 
         attribute = parse_attributes(self.samples['attributes'][self.start_index + i])
         attribute = torch.FloatTensor(attribute)

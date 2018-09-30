@@ -30,8 +30,9 @@ def train(epoch, train_loader, model, optimizer):
 
         # Set device options
         imgs = imgs.to(device)
-        label_ids = label_ids.to(device)
         # print(img.size())
+        label_ids = label_ids.to(device)
+        print(label_ids.size())
         attributes = attributes.to(device)
         # print('targets: ' + str(targets))
         # print('targets.size(): ' + str(targets.size()))
