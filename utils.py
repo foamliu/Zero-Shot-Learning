@@ -36,6 +36,8 @@ class ExpoAverageMeter(object):
     # Exponential Weighted Average Meter
     def __init__(self, beta=0.9):
         self.reset()
+
+    def reset(self):
         self.beta = 0.9
         self.val = 0
         self.avg = 0
