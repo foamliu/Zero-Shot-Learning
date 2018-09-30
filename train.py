@@ -4,6 +4,7 @@ from torch import nn
 from torch import optim
 from torch.utils.data import DataLoader
 
+from config import *
 from data_gen import ZslDataset
 from models import Encoder
 from utils import *
