@@ -90,7 +90,7 @@ def save_checkpoint(epoch, model, optimizer, val_acc, is_best):
     torch.save(state, filename)
     # If this checkpoint is the best so far, store a copy so it doesn't get overwritten by a worse checkpoint
     if is_best:
-        torch.save(state, 'BEST_' + filename)
+        torch.save(state, 'BEST_checkpoint.tar')
 
 
 def adjust_learning_rate(optimizer, shrink_factor):
