@@ -1,11 +1,14 @@
 import json
 import random
-
+import torchvision.transforms as transforms
 import numpy as np
 from scipy.misc import imread, imresize, imsave
 
 from config import *
 from utils import *
+
+normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+transform = transforms.Compose([normalize])
 
 
 def main():
@@ -22,7 +25,7 @@ def main():
              file.lower().endswith('.jpg')]
     samples = random.sample(files, 10)
 
-    imgs = np.empty((10, 3, 224, 224), dtype=np.float32)
+    imgs = torch.zeros([10, 3, 224, 224], dtype=torch.float)
 
     for i, path in enumerate(samples):
         # Read images
@@ -34,12 +37,11 @@ def main():
         assert img.shape == (3, 224, 224)
         assert np.max(img) <= 255
         img = torch.FloatTensor(img / 255.)
+        img = transform(img)
         imgs[i] = img
 
     imgs = torch.tensor(imgs)
-    print(imgs)
     imgs.to(device)
-    print(imgs)
 
     result = []
     preds = model(imgs)
