@@ -99,7 +99,7 @@ def valid(val_loader, model):
             # Keep track of metrics
             losses.update(loss.item())
             batch_time.update(time.time() - start)
-            accs.update(acc, batch_size)
+            accs.update(acc)
 
             start = time.time()
 
