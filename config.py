@@ -69,3 +69,4 @@ annotations_labels['img_path'] = annotations_labels['img_path'].str.strip()
 label_name2idx = dict()
 for i in range(len(attributes)):
     label_name2idx[attributes['label_name'][i]] = i
+print(label_name2idx)
