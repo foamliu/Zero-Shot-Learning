@@ -57,6 +57,7 @@ attributes_per_class = []
 for i in range(len(attributes)):
     attributes_per_class.append(parse_attributes(attributes['attributes'][i]))
 attributes_per_class = torch.tensor(attributes_per_class)
+attributes_per_class.to(device)
 # print(attributes_per_class.size())
 
 annotations_labels = zsl_a_animals_train_annotations_labels
