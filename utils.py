@@ -42,19 +42,7 @@ def KNN(mat, k):
     mat = mat.float()
     mat_square = torch.mm(mat, mat.t())
     diag = torch.diagonal(mat_square)
-    print(diag)
-    print(diag.size())
+    # print(diag)
+    # print(diag.size())
     val, index = diag.topk(k, largest=False, sorted=True)
-    return val, index
-    diag = diag.expand_as(mat_square)
-    dist_mat = (diag + diag.t() - 2 * mat_square)
-    dist_col = dist_mat[-1, :-1]
-    # k+1 because the nearest must be itself
-    val, index = dist_col.topk(k, largest=False, sorted=True)
-    return val, index
-
-def KNN2(vec, mat, k):
-    dist = torch.dist(vec, mat)
-    print(dist.size())
-    val, index = dist.topk(k, largest=False, sorted=True)
     return val, index
