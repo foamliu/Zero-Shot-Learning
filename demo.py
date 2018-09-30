@@ -61,7 +61,7 @@ def main():
         result.append({'i': i, 'cat_name_zh': label_list[score]})
 
     with open('result.json', 'w') as file:
-        json.dump(result, file, indent=4)
+        json.dump(result, file, indent=4, ensure_ascii=False)
 
 
 if __name__ == '__main__':
