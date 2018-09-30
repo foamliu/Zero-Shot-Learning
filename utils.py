@@ -110,6 +110,6 @@ def get_label_list():
     labels['cat_name_zh'] = labels['cat_name_zh'].str.strip()
     label_list = []
     for i in range(len(labels)):
-        label_list.append(label_list['cat_name_zh'][i])
+        label_list.append(labels['cat_name_zh'][i])
 
     return label_list
