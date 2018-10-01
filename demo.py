@@ -23,7 +23,7 @@ def main():
     files = [os.path.join(zsl_a_animals_test_folder, file) for file in os.listdir(zsl_a_animals_test_folder) if
              file.lower().endswith('.jpg')]
 
-    num_test_samples = 50
+    num_test_samples = 10
     samples = random.sample(files, num_test_samples)
 
     imgs = torch.zeros([num_test_samples, 3, 224, 224], dtype=torch.float, device=device)
