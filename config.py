@@ -79,4 +79,6 @@ attribute_list.columns = ['attribute_name']
 attribute_list['attribute_name'] = attribute_list['attribute_name'].str.strip()
 attribute_names = []
 for i in range(len(attribute_list)):
-    attribute_names.append(attribute_list['attribute_name'][i])
+    attribute_name = attribute_list['attribute_name'][i]
+    attribute_name = attribute_name.split(': ')[1]
+    attribute_names.append(attribute_name)
