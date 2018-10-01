@@ -31,6 +31,7 @@ class Encoder(nn.Module):
         out = self.resnet(images)
         out = out.view(-1, feature_size)  # (batch_size, 2048)
         out = self.embedding(out)
+        out = nn.Sigmoid(out)
         return out
 
     def fine_tune(self):
