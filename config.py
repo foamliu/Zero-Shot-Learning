@@ -36,6 +36,8 @@ zsl_a_animals_train_annotations_labels = os.path.join(zsl_a_animals_train_folder
                                                       'zsl_a_animals_train_annotations_labels_20180321.txt')
 zsl_a_animals_train_annotations_attributes_per_class = os.path.join(zsl_a_animals_train_folder,
                                                                     'zsl_a_animals_train_annotations_attributes_per_class_20180321.txt')
+zsl_a_animals_train_annotations_attribute_list = os.path.join(zsl_a_animals_train_folder,
+                                                              'zsl_a_animals_train_annotations_attribute_list_20180321.txt')
 
 
 def parse_attributes(attr_str):
@@ -70,3 +72,11 @@ label_name2idx = dict()
 for i in range(len(attributes)):
     label_name2idx[attributes['label_name'][i]] = i
 # print(label_name2idx)
+
+annotations_attribute_list = zsl_a_animals_train_annotations_attribute_list
+attribute_list = pd.read_csv(annotations_attribute_list, header=None, usecols=[2])
+attribute_list.columns = ['attribute_name']
+attribute_list['attribute_name'] = attribute_list['attribute_name'].str.strip()
+attribute_names = []
+for i in range(len(attribute_list)):
+    attribute_names.append(attribute_list['attribute_name'][i])
