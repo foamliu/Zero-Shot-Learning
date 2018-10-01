@@ -1,5 +1,6 @@
 import os
 
+import numpy as np
 import pandas as pd
 import torch
 
@@ -82,3 +83,4 @@ for i in range(len(attribute_list)):
     attribute_name = attribute_list['attribute_name'][i]
     attribute_name = attribute_name.split(': ')[1]
     attribute_names.append(attribute_name)
+attribute_names = np.array(attribute_names)

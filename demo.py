@@ -1,7 +1,6 @@
 import json
 import random
 
-import numpy as np
 import torchvision.transforms as transforms
 from scipy.misc import imread, imresize, imsave
 
@@ -54,12 +53,15 @@ def main():
 
     for i in range(num_test_samples):
         embeded = preds[i]
+        embeded = embeded.cpu().numpy()
+        attributes = attribute_names[embeded >= 0.9]
+        attributes = ', '.join(attributes)
         # print('embeded: ' + str(embeded))
         labal_id = scores[i].item()
         label_name = 'Label_A_%02d' % (labal_id + 1,)
         print('labal_id: ' + str(labal_id))
         result.append(
-            {'i': i, 'labal_id': labal_id, 'label_name': label_name, 'embeded': embeded.cpu().numpy().tolist()})
+            {'i': i, 'labal_id': labal_id, 'label_name': label_name, 'attributes': attributes})
 
     with open('result.json', 'w') as file:
         json.dump(result, file, indent=4, ensure_ascii=False)
