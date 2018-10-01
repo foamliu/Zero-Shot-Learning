@@ -20,6 +20,7 @@ class Encoder(nn.Module):
         modules = list(resnet.children())[:-1]
         self.resnet = nn.Sequential(*modules)
         self.embedding = nn.Linear(feature_size, embedding_size)
+        self.sigmoid = nn.Sigmoid()
         self.fine_tune()
 
     def forward(self, images):
@@ -31,7 +32,7 @@ class Encoder(nn.Module):
         out = self.resnet(images)
         out = out.view(-1, feature_size)  # (batch_size, 2048)
         out = self.embedding(out)
-        out = nn.Sigmoid(out)
+        out = self.sigmoid(out)
         return out
 
     def fine_tune(self):
