@@ -1,8 +1,10 @@
 import os
 import zipfile
 
-from config import test_a_folder, test_b_folder
 from utils import ensure_folder
+
+test_a_folder = 'data/ai_challenger_zsl2018_train_test_a_20180321'
+test_b_folder = 'data/ai_challenger_zsl2018_test_b_20180423'
 
 
 def extract(folder):
