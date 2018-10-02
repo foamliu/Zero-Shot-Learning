@@ -169,7 +169,7 @@ def main(args):
             epochs_since_improvement = 0
 
         # Save checkpoint
-        save_checkpoint(epoch, model, optimizer, val_acc, is_best)
+        save_checkpoint(epoch, model, optimizer, val_acc, is_best, superclass)
 
 
 if __name__ == '__main__':
