@@ -53,8 +53,7 @@ def KNN(mat, k):
     return val, index
 
 
-def batched_KNN(query, k):
-    attributes = attributes_per_class
+def batched_KNN(query, k, attributes):
     batch_size = query.size()[0]
     val_list = torch.zeros(batch_size, dtype=torch.float, device=device)
     index_list = torch.zeros(batch_size, dtype=torch.int, device=device)
@@ -160,3 +159,17 @@ def get_embedding_size_by_superclass(superclass):
 
     lines = [line for line in lines if len(line.strip()) > 0]
     return len(lines)
+
+
+def get_attributes_per_class_by_superclass(superclass):
+    _, _, annotations_attributes_per_class, _ = get_annotations_by_superclass(superclass)
+    attributes = pd.read_csv(annotations_attributes_per_class, header=None)
+    attributes.columns = ['label_name', 'attributes']
+    attributes['attributes'] = attributes['attributes'].str.strip()
+
+    attributes_per_class = []
+    for i in range(len(attributes)):
+        attributes_per_class.append(parse_attributes(attributes['attributes'][i]))
+    attributes_per_class = torch.tensor(attributes_per_class)
+    attributes_per_class.to(device)
+    return attributes_per_class

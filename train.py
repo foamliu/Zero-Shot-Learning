@@ -40,7 +40,7 @@ def train(epoch, train_loader, model, optimizer):
         # print('targets.size(): ' + str(targets.size()))
 
         preds = model(imgs)
-        _, scores = batched_KNN(preds, 1)
+        _, scores = batched_KNN(preds, 1, attributes_per_class)
         # print('scores: ' + str(scores))
         # print('scores.size(): ' + str(scores.size()))
 
@@ -94,7 +94,7 @@ def valid(val_loader, model):
 
             loss = criterion(preds, attributes)
 
-            _, scores = batched_KNN(preds, 1)
+            _, scores = batched_KNN(preds, 1, attributes_per_class)
             acc = accuracy(scores, label_ids)
 
             # Keep track of metrics
@@ -128,6 +128,8 @@ def main(args):
 
     embedding_size = get_embedding_size_by_superclass(superclass)
     print('embedding_size: ' + str(embedding_size))
+
+    attributes_per_class = get_attributes_per_class_by_superclass(superclass)
 
     # Initialize encoder
     model = Encoder(embedding_size=embedding_size)
