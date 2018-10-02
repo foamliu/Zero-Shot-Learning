@@ -1,10 +1,13 @@
 import os
 import zipfile
 
-from utils import ensure_folder
-
 test_a_folder = 'data/ai_challenger_zsl2018_train_test_a_20180321'
 test_b_folder = 'data/ai_challenger_zsl2018_test_b_20180423'
+
+
+def ensure_folder(folder):
+    if not os.path.exists(folder):
+        os.makedirs(folder)
 
 
 def extract(folder):
