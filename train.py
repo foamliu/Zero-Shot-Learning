@@ -126,8 +126,10 @@ def main(args):
     val_loader = DataLoader(dataset=ZslDataset(superclass, 'valid'), batch_size=batch_size, pin_memory=True,
                             drop_last=True)
 
+    embedding_size = get_embedding_size_by_superclass(superclass)
+
     # Initialize encoder
-    model = Encoder(embedding_size=123)
+    model = Encoder(embedding_size=embedding_size)
 
     # Use appropriate device
     model = model.to(device)

@@ -12,7 +12,7 @@ class ZslDataset(Dataset):
         assert self.superclass in {'Animals', 'Fruits', 'Vehicles', 'Electronics', 'Hairstyles'}
         assert self.split in {'train', 'valid'}
 
-        annotations_labels, annotations_attributes_per_class, self.image_folder = get_annotations_by_superclass(
+        self.image_folder, annotations_labels, annotations_attributes_per_class, _ = get_annotations_by_superclass(
             superclass)
         self.label_name2idx = get_label_name2idx_by_superclass(superclass)
 

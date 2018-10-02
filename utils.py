@@ -113,31 +113,36 @@ def get_label_list():
 
 def get_annotations_by_superclass(superclass):
     if superclass == 'Animals':
+        image_folder = zsl_a_animals_train_image_folder
         annotations_labels = zsl_a_animals_train_annotations_labels
         annotations_attributes_per_class = zsl_a_animals_train_annotations_attributes_per_class
-        image_folder = zsl_a_animals_train_image_folder
+        annotations_attribute_list = zsl_a_animals_train_annotations_attribute_list
     elif superclass == 'Fruits':
+        image_folder = zsl_a_fruits_train_image_folder
         annotations_labels = zsl_a_fruits_train_annotations_labels
         annotations_attributes_per_class = zsl_a_fruits_train_annotations_attributes_per_class
-        image_folder = zsl_a_fruits_train_image_folder
+        annotations_attribute_list = zsl_a_animals_train_annotations_attribute_list
     elif superclass == 'Vehicles':
+        image_folder = zsl_b_vehicles_train_image_folder
         annotations_labels = zsl_b_vehicles_train_annotations_labels
         annotations_attributes_per_class = zsl_b_vehicles_train_annotations_attributes_per_class
-        image_folder = zsl_b_vehicles_train_image_folder
+        annotations_attribute_list = zsl_a_animals_train_annotations_attribute_list
     elif superclass == 'Electronics':
+        image_folder = zsl_b_electronics_train_image_folder
         annotations_labels = zsl_b_electronics_train_annotations_labels
         annotations_attributes_per_class = zsl_b_electronics_train_annotations_attributes_per_class
-        image_folder = zsl_b_electronics_train_image_folder
+        annotations_attribute_list = zsl_a_animals_train_annotations_attribute_list
     else:  # 'Hairstyles'
+        image_folder = zsl_b_hairstyles_train_image_folder
         annotations_labels = zsl_b_hairstyles_train_annotations_labels
         annotations_attributes_per_class = zsl_b_hairstyles_train_annotations_attributes_per_class
-        image_folder = zsl_b_hairstyles_train_image_folder
+        annotations_attribute_list = zsl_a_animals_train_annotations_attribute_list
 
-    return annotations_labels, annotations_attributes_per_class, image_folder
+    return image_folder, annotations_labels, annotations_attributes_per_class, annotations_attribute_list
 
 
 def get_label_name2idx_by_superclass(superclass):
-    _, annotations_attributes_per_class, _ = get_annotations_by_superclass(superclass)
+    _, _, annotations_attributes_per_class, _ = get_annotations_by_superclass(superclass)
     attributes = pd.read_csv(annotations_attributes_per_class, header=None)
     attributes.columns = ['label_name', 'attributes']
     attributes['attributes'] = attributes['attributes'].str.strip()
@@ -146,3 +151,12 @@ def get_label_name2idx_by_superclass(superclass):
         label_name2idx[attributes['label_name'][i]] = i
     # print(label_name2idx)
     return label_name2idx
+
+
+def get_embedding_size_by_superclass(superclass):
+    _, _, _, annotations_attribute_list = get_annotations_by_superclass(superclass)
+    with open(annotations_attribute_list, 'r') as file:
+        lines = file.readlines()
+
+    lines = [line for line in lines if len(line.strip()) > 0]
+    return len(lines)
