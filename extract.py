@@ -1,7 +1,7 @@
 import os
 import zipfile
 
-from config import *
+from config import test_a_folder, test_b_folder
 from utils import ensure_folder
 
 
