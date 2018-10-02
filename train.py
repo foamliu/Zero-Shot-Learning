@@ -11,7 +11,7 @@ from models import Encoder
 from utils import *
 
 
-def train(epoch, train_loader, model, optimizer):
+def train(epoch, train_loader, model, optimizer, attributes_per_class):
     # Ensure dropout layers are in train mode
     model.train()
 
@@ -70,7 +70,7 @@ def train(epoch, train_loader, model, optimizer):
                                                                     accs=accs))
 
 
-def valid(val_loader, model):
+def valid(val_loader, model, attributes_per_class):
     model.eval()  # eval mode (no dropout or batchnorm)
 
     # Loss function
@@ -152,10 +152,10 @@ def main(args):
             adjust_learning_rate(optimizer, 0.8)
 
         # One epoch's training
-        train(epoch, train_loader, model, optimizer)
+        train(epoch, train_loader, model, optimizer, attributes_per_class)
 
         # One epoch's validation
-        val_acc, val_loss = valid(val_loader, model)
+        val_acc, val_loss = valid(val_loader, model, attributes_per_class)
         print('\n * ACCURACY - {acc:.3f}, LOSS - {loss:.3f}\n'.format(acc=val_acc, loss=val_loss))
 
         # Check if there was an improvement
