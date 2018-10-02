@@ -24,12 +24,12 @@ zsl_a_animals_train_folder = os.path.join(test_a_folder, 'zsl_a_animals_train_20
 zsl_a_animals_test_folder = os.path.join(test_a_folder, 'zsl_a_animals_test_20180321')
 zsl_a_fruits_train_folder = os.path.join(test_a_folder, 'zsl_a_fruits_train_20180321')
 zsl_a_fruits_test_folder = os.path.join(test_a_folder, 'zsl_a_fruits_test_20180321')
-zsl_b_vehicles_train_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
-zsl_b_vehicles_test_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
+zsl_b_vehicles_train_folder = os.path.join(data_folder, 'zsl_b_vehicles_train_20180321')
+zsl_b_vehicles_test_folder = os.path.join(data_folder, 'zsl_b_vehicles_test_20180321')
 zsl_b_electronics_train_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
 zsl_b_electronics_test_folder = os.path.join(data_folder, 'zsl_b_electronics_test_20180321')
-zsl_b_hairstyles_train_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
-zsl_b_hairstyles_test_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
+zsl_b_hairstyles_train_folder = os.path.join(data_folder, 'zsl_b_hairstyles_train_20180321')
+zsl_b_hairstyles_test_folder = os.path.join(data_folder, 'zsl_b_hairstyles_test_20180321')
 
 # Animals
 zsl_a_animals_train_image_folder = os.path.join(zsl_a_animals_train_folder, 'zsl_a_animals_train_images_20180321')
