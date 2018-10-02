@@ -42,6 +42,8 @@ class ZslDataset(Dataset):
 
     def __getitem__(self, i):
         img_path = self.samples['img_path'][self.start_index + i]
+        if self.superclass in ['Vehicles', 'Electronics', 'Hairstyles']:
+            img_path = img_path[8:]
         path = os.path.join(self.image_folder, img_path)
         # Read images
         img = imread(path)
