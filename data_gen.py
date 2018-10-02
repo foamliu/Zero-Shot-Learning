@@ -1,4 +1,3 @@
-import numpy as np
 import torchvision.transforms as transforms
 from scipy.misc import imread, imresize
 from torch.utils.data import Dataset
@@ -18,6 +17,22 @@ class ZslDataset(Dataset):
             annotations_labels = zsl_a_animals_train_annotations_labels
             annotations_attributes_per_class = zsl_a_animals_train_annotations_attributes_per_class
             self.image_folder = zsl_a_animals_train_image_folder
+        elif super_class == 'Fruits':
+            annotations_labels = zsl_a_fruits_train_annotations_labels
+            annotations_attributes_per_class = zsl_a_fruits_train_annotations_attributes_per_class
+            self.image_folder = zsl_a_fruits_train_image_folder
+        elif super_class == 'Vehicles':
+            annotations_labels = zsl_b_vehicles_train_annotations_labels
+            annotations_attributes_per_class = zsl_b_vehicles_train_annotations_attributes_per_class
+            self.image_folder = zsl_b_vehicles_train_image_folder
+        elif super_class == 'Electronics':
+            annotations_labels = zsl_b_electronics_train_annotations_labels
+            annotations_attributes_per_class = zsl_b_electronics_train_annotations_attributes_per_class
+            self.image_folder = zsl_b_electronics_train_image_folder
+        else:  # 'Hairstyles'
+            annotations_labels = zsl_b_hairstyles_train_annotations_labels
+            annotations_attributes_per_class = zsl_b_hairstyles_train_annotations_attributes_per_class
+            self.image_folder = zsl_b_hairstyles_train_image_folder
 
         annotations_labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6])
         annotations_labels.columns = ['label_name', 'img_path']

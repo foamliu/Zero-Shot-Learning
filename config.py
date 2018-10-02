@@ -24,13 +24,14 @@ zsl_a_animals_train_folder = os.path.join(test_a_folder, 'zsl_a_animals_train_20
 zsl_a_animals_test_folder = os.path.join(test_a_folder, 'zsl_a_animals_test_20180321')
 zsl_a_fruits_train_folder = os.path.join(test_a_folder, 'zsl_a_fruits_train_20180321')
 zsl_a_fruits_test_folder = os.path.join(test_a_folder, 'zsl_a_fruits_test_20180321')
+zsl_b_vehicles_train_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
+zsl_b_vehicles_test_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
 zsl_b_electronics_train_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
 zsl_b_electronics_test_folder = os.path.join(data_folder, 'zsl_b_electronics_test_20180321')
 zsl_b_hairstyles_train_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
 zsl_b_hairstyles_test_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
-zsl_b_vehicles_train_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
-zsl_b_vehicles_test_folder = os.path.join(data_folder, 'zsl_b_electronics_train_20180321')
 
+# Animals
 zsl_a_animals_train_image_folder = os.path.join(zsl_a_animals_train_folder, 'zsl_a_animals_train_images_20180321')
 
 zsl_a_animals_train_annotations_labels = os.path.join(zsl_a_animals_train_folder,
@@ -39,6 +40,44 @@ zsl_a_animals_train_annotations_attributes_per_class = os.path.join(zsl_a_animal
                                                                     'zsl_a_animals_train_annotations_attributes_per_class_20180321.txt')
 zsl_a_animals_train_annotations_attribute_list = os.path.join(zsl_a_animals_train_folder,
                                                               'zsl_a_animals_train_annotations_attribute_list_20180321.txt')
+
+# Fruits
+zsl_a_fruits_train_image_folder = os.path.join(zsl_a_fruits_train_folder, 'zsl_a_fruits_train_images_20180321')
+zsl_a_fruits_train_annotations_labels = os.path.join(zsl_a_fruits_train_folder,
+                                                     'zsl_a_fruits_train_annotations_labels_20180321.txt')
+zsl_a_fruits_train_annotations_attributes_per_class = os.path.join(zsl_a_fruits_train_folder,
+                                                                   'zsl_a_fruits_train_annotations_attributes_per_class_20180321.txt')
+zsl_a_fruits_train_annotations_attribute_list = os.path.join(zsl_a_fruits_train_folder,
+                                                             'zsl_a_fruits_train_annotations_attribute_list_20180321.txt')
+
+# Vehicles
+zsl_b_vehicles_train_image_folder = os.path.join(zsl_b_vehicles_train_folder, 'zsl_b_vehicles_train_images_20180321')
+zsl_b_vehicles_train_annotations_labels = os.path.join(zsl_b_vehicles_train_folder,
+                                                       'zsl_b_vehicles_train_annotations_labels__20180321.txt')
+zsl_b_vehicles_train_annotations_attributes_per_class = os.path.join(zsl_b_vehicles_train_folder,
+                                                                     'zsl_b_vehicles_train_annotations_attributes_per_class_20180321.txt')
+zsl_b_vehicles_train_annotations_attribute_list = os.path.join(zsl_b_vehicles_train_folder,
+                                                               'zsl_b_vehicles_train_annotations_attribute_list_20180321.txt')
+
+# Electronics
+zsl_b_electronics_train_image_folder = os.path.join(zsl_b_electronics_train_folder,
+                                                    'zsl_b_electronics_train_images_20180321')
+zsl_b_electronics_train_annotations_labels = os.path.join(zsl_b_electronics_train_folder,
+                                                          'zsl_b_electronics_train_annotations_labels_20180321.txt')
+zsl_b_electronics_train_annotations_attributes_per_class = os.path.join(zsl_b_electronics_train_folder,
+                                                                        'zsl_b_electronics_train_annotations_attributes_per_class_20180321.txt')
+zsl_b_electronics_train_annotations_attribute_list = os.path.join(zsl_b_electronics_train_folder,
+                                                                  'zsl_b_electronics_train_annotations_attribute_list_20180321.txt')
+
+# Hairstyles
+zsl_b_hairstyles_train_image_folder = os.path.join(zsl_b_hairstyles_train_folder,
+                                                   'zsl_b_hairstyles_train_images_20180321')
+zsl_b_hairstyles_train_annotations_labels = os.path.join(zsl_b_hairstyles_train_folder,
+                                                         'zsl_b_hairstyles_train_annotations_labels_20180321.txt')
+zsl_b_hairstyles_train_annotations_attributes_per_class = os.path.join(zsl_b_hairstyles_train_folder,
+                                                                       'zsl_b_hairstyles_train_annotations_attributes_per_class_20180321.txt')
+zsl_b_hairstyles_train_annotations_attribute_list = os.path.join(zsl_b_hairstyles_train_folder,
+                                                                 'zsl_b_hairstyles_train_annotations_attribute_list_20180321.txt')
 
 
 def parse_attributes(attr_str):

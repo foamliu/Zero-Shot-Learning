@@ -1,3 +1,4 @@
+import argparse
 import time
 
 from torch import nn
@@ -116,10 +117,13 @@ def valid(val_loader, model):
     return accs.avg, losses.avg
 
 
-def main():
-    train_loader = DataLoader(dataset=ZslDataset('Animals', 'train'), batch_size=batch_size, shuffle=True,
+def main(args):
+    superclass = args['superclass']
+    if superclass is None:
+        superclass = 'Animals'
+    train_loader = DataLoader(dataset=ZslDataset(superclass, 'train'), batch_size=batch_size, shuffle=True,
                               pin_memory=True, drop_last=True)
-    val_loader = DataLoader(dataset=ZslDataset('Animals', 'valid'), batch_size=batch_size, pin_memory=True,
+    val_loader = DataLoader(dataset=ZslDataset(superclass, 'valid'), batch_size=batch_size, pin_memory=True,
                             drop_last=True)
 
     # Initialize encoder
@@ -164,4 +168,10 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # Parse arguments
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-s", "--superclass",
+                    help="superclass ('Animals', 'Fruits', 'Vehicles', 'Electronics', 'Hairstyles')")
+    args = vars(ap.parse_args())
+
+    main(args)
