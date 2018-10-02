@@ -1,9 +1,4 @@
-import os
-
-import torch
-
-from config import attributes_per_class
-from config import device
+from config import *
 
 
 def ensure_folder(folder):
@@ -114,3 +109,40 @@ def get_label_list():
 
     print('len(label_list): ' + str(len(label_list)))
     return label_list
+
+
+def get_annotations_by_superclass(superclass):
+    if superclass == 'Animals':
+        annotations_labels = zsl_a_animals_train_annotations_labels
+        annotations_attributes_per_class = zsl_a_animals_train_annotations_attributes_per_class
+        image_folder = zsl_a_animals_train_image_folder
+    elif superclass == 'Fruits':
+        annotations_labels = zsl_a_fruits_train_annotations_labels
+        annotations_attributes_per_class = zsl_a_fruits_train_annotations_attributes_per_class
+        image_folder = zsl_a_fruits_train_image_folder
+    elif superclass == 'Vehicles':
+        annotations_labels = zsl_b_vehicles_train_annotations_labels
+        annotations_attributes_per_class = zsl_b_vehicles_train_annotations_attributes_per_class
+        image_folder = zsl_b_vehicles_train_image_folder
+    elif superclass == 'Electronics':
+        annotations_labels = zsl_b_electronics_train_annotations_labels
+        annotations_attributes_per_class = zsl_b_electronics_train_annotations_attributes_per_class
+        image_folder = zsl_b_electronics_train_image_folder
+    else:  # 'Hairstyles'
+        annotations_labels = zsl_b_hairstyles_train_annotations_labels
+        annotations_attributes_per_class = zsl_b_hairstyles_train_annotations_attributes_per_class
+        image_folder = zsl_b_hairstyles_train_image_folder
+
+    return annotations_labels, annotations_attributes_per_class, image_folder
+
+
+def get_label_name2idx_by_superclass(superclass):
+    _, annotations_attributes_per_class, _ = get_annotations_by_superclass(superclass)
+    attributes = pd.read_csv(annotations_attributes_per_class, header=None)
+    attributes.columns = ['label_name', 'attributes']
+    attributes['attributes'] = attributes['attributes'].str.strip()
+    label_name2idx = dict()
+    for i in range(len(attributes)):
+        label_name2idx[attributes['label_name'][i]] = i
+    # print(label_name2idx)
+    return label_name2idx

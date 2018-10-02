@@ -2,37 +2,19 @@ import torchvision.transforms as transforms
 from scipy.misc import imread, imresize
 from torch.utils.data import Dataset
 
-from config import *
 from utils import *
 
 
 class ZslDataset(Dataset):
-    def __init__(self, super_class, split):
-        self.super_class = super_class
+    def __init__(self, superclass, split):
+        self.superclass = superclass
         self.split = split
-        assert self.super_class in {'Animals', 'Fruits', 'Vehicles', 'Electronics', 'Hairstyles'}
+        assert self.superclass in {'Animals', 'Fruits', 'Vehicles', 'Electronics', 'Hairstyles'}
         assert self.split in {'train', 'valid'}
 
-        if super_class == 'Animals':
-            annotations_labels = zsl_a_animals_train_annotations_labels
-            annotations_attributes_per_class = zsl_a_animals_train_annotations_attributes_per_class
-            self.image_folder = zsl_a_animals_train_image_folder
-        elif super_class == 'Fruits':
-            annotations_labels = zsl_a_fruits_train_annotations_labels
-            annotations_attributes_per_class = zsl_a_fruits_train_annotations_attributes_per_class
-            self.image_folder = zsl_a_fruits_train_image_folder
-        elif super_class == 'Vehicles':
-            annotations_labels = zsl_b_vehicles_train_annotations_labels
-            annotations_attributes_per_class = zsl_b_vehicles_train_annotations_attributes_per_class
-            self.image_folder = zsl_b_vehicles_train_image_folder
-        elif super_class == 'Electronics':
-            annotations_labels = zsl_b_electronics_train_annotations_labels
-            annotations_attributes_per_class = zsl_b_electronics_train_annotations_attributes_per_class
-            self.image_folder = zsl_b_electronics_train_image_folder
-        else:  # 'Hairstyles'
-            annotations_labels = zsl_b_hairstyles_train_annotations_labels
-            annotations_attributes_per_class = zsl_b_hairstyles_train_annotations_attributes_per_class
-            self.image_folder = zsl_b_hairstyles_train_image_folder
+        annotations_labels, annotations_attributes_per_class, self.image_folder = get_annotations_by_superclass(
+            superclass)
+        self.label_name2idx = get_label_name2idx_by_superclass(superclass)
 
         annotations_labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6])
         annotations_labels.columns = ['label_name', 'img_path']
@@ -72,7 +54,7 @@ class ZslDataset(Dataset):
 
         label_name = self.samples['label_name'][self.start_index + i]
         # print('label_name: ' + str(label_name))
-        label_id = label_name2idx[label_name]
+        label_id = self.label_name2idx[label_name]
         # print('label_id: ' + str(label_id))
         label_id = torch.IntTensor([label_id])
         # print('label_id: ' + str(label_id))
