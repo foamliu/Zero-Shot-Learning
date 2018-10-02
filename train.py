@@ -127,6 +127,7 @@ def main(args):
                             drop_last=True)
 
     embedding_size = get_embedding_size_by_superclass(superclass)
+    print('embedding_size: ' + str(embedding_size))
 
     # Initialize encoder
     model = Encoder(embedding_size=embedding_size)
