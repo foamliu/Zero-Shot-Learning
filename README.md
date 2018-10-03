@@ -39,23 +39,92 @@ $ python train.py
 $ tensorboard --logdir path_to_current_dir/logs
 ```
 
+
+各超类训练结束最佳的准确率和损失为：
+
+|=|动物|水果|交通工具|电子产品|发型|
+|ACCURACY|95.999|76.859|88.277|88.016|na|
+|LOSS|0.011|0.039|0.014|0.021|na|
+
 ### Demo
 下载 [pre-trained model](https://github.com/foamliu/Zero-Shot-Learning/releases/download/v1.0/model.11-0.6262.hdf5) 放在 models 目录然后执行:
 
 ```bash
-$ python demo.py
+$ python demo.py -s "Animals"
 ```
+
+#### 动物
 
 |原图|属性标签|类别|
 |---|---|---|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_0.jpg" width="224" />|是白色的, 有柔软的皮肤, 有羽毛, 是小的（比猪小）, 有短的腿, 是两条腿走路的, 只有两条腿, 有两个胳膊, 有长的翅膀, 有爪子, 有长脖子, 有短尾巴, 有短的喙, 有舌头, 有眼睛, 有耳朵, 有鼻子, 有脊椎, 能游泳, 能行走, 能下蛋, 能捕鱼, 吃植物, 吃昆虫, 吃鱼, 吃树叶, 吃种子, 行动快速, 是弱小的, 有肌肉, 是友好的, 是胆小的, 是活跃的, 是群居动物, 是吵闹的, 是恒温动物, 生活在水里|Label_A_28|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_1.jpg" width="224" />|是毛茸茸的, 有柔软的皮肤, 有四条腿, 有爪子, 有肉垫, 有短脖子, 有牙齿, 有獠牙, 有舌头, 有眼睛, 有耳朵, 有鼻子, 有脊椎, 能游泳, 能行走, 吃植物, 吃肉, 吃花蜜, 是强壮的, 有肌肉, 是活跃的, 是安静的, 是恒温动物, 能产奶, 生活在地面上|Label_A_13|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_2.jpg" width="224" />|是毛茸茸的, 有柔软的皮肤, 是光滑的, 有胡须, 是小的（比猪小）, 有四条腿, 有肉垫, 有短脖子, 有牙齿, 有舌头, 有眼睛, 有耳朵, 有鼻子, 能行走, 能跳跃, 行动快速, 是活跃的, 是安静的, 是恒温动物, 能产奶, 生活在地面上|Label_A_22|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_3.jpg" width="224" />|是毛茸茸的, 有柔软的皮肤, 有胡须, 是小的（比猪小）, 有长的腿, 有四条腿, 有爪子, 有肉垫, 有短脖子, 有牙齿, 有长尾巴, 有舌头, 有眼睛, 有耳朵, 有鼻子, 有脊椎, 能游泳, 能行走, 能跳跃, 吃肉, 行动快速, 有肌肉, 是活跃的, 是安静的, 是恒温动物, 能产奶, 生活在地面上|Label_A_01|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_4.jpg" width="224" />|是毛茸茸的, 有柔软的皮肤, 有胡须, 有四条腿, 有爪子, 有肉垫, 有短脖子, 有牙齿, 有獠牙, 有舌头, 有眼睛, 有耳朵, 有鼻子, 有脊椎, 能游泳, 能行走, 能跳跃, 吃肉, 行动快速, 是强壮的, 有肌肉, 是聪明的, 是活跃的, 是恒温动物, 能产奶, 生活在地面上, 是家养动物|Label_A_01|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_5.jpg" width="224" />|是毛茸茸的, 有柔软的皮肤, 是小的（比猪小）, 有四条腿, 有爪子, 有肉垫, 有短脖子, 有舌头, 有眼睛, 有耳朵, 有鼻子, 有脊椎, 能行走, 吃植物, 吃昆虫, 吃肉, 行动快速, 有肌肉, 是活跃的, 是恒温动物, 生活在地面上|Label_A_22|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_6.jpg" width="224" />|是无毛的, 有坚韧的皮肤, 有壳, 是小的（比猪小）, 有短的腿, 有短尾巴, 有舌头, 有眼睛, 有鼻子, 有壳, 能下蛋, 吃植物, 吃树叶, 吃浮游生物, 是弱小的, 是友好的, 是胆小的, 会冬眠, 是群居动物, 是安静的, 是冷血动物, 生活在地面上|Label_A_38|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_7.jpg" width="224" />|有柔软的皮肤, 有羽毛, 是小的（比猪小）, 有短的腿, 是两条腿走路的, 只有两条腿, 有两个胳膊, 有长的翅膀, 有爪子, 有长脖子, 有短尾巴, 有短的喙, 有舌头, 有眼睛, 有耳朵, 有鼻子, 有脊椎, 能游泳, 能行走, 能下蛋, 能捕鱼, 吃植物, 吃昆虫, 吃鱼, 吃树叶, 吃种子, 行动快速, 有肌肉, 是胆小的, 是活跃的, 是群居动物, 是吵闹的, 是恒温动物|Label_A_28|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_8.jpg" width="224" />|是毛茸茸的, 有柔软的皮肤, 有胡须, 有长的腿, 有四条腿, 有爪子, 有肉垫, 有牙齿, 有舌头, 有眼睛, 有耳朵, 有鼻子, 有脊椎, 能行走, 能跳跃, 行动快速, 有肌肉, 是活跃的, 是安静的, 是恒温动物, 能产奶, 生活在地面上|Label_A_16|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_9.jpg" width="224" />|是无毛的, 有柔软的皮肤, 是光滑的, 是小的（比猪小）, 有触手, 吃浮游生物, 行动缓慢, 是弱小的, 是胆小的, 是群居动物, 是冷血动物, 是有毒的, 生活在海洋里, 生活在水里|Label_A_37|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_0.jpg" width="224" />|$(attributes_Animals_0)|$(cat_Animals_0)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_1.jpg" width="224" />|$(attributes_Animals_1)|$(cat_Animals_1)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_2.jpg" width="224" />|$(attributes_Animals_2)|$(cat_Animals_2)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_3.jpg" width="224" />|$(attributes_Animals_3)|$(cat_Animals_3)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_4.jpg" width="224" />|$(attributes_Animals_4)|$(cat_Animals_4)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_5.jpg" width="224" />|$(attributes_Animals_5)|$(cat_Animals_5)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_6.jpg" width="224" />|$(attributes_Animals_6)|$(cat_Animals_6)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_7.jpg" width="224" />|$(attributes_Animals_7)|$(cat_Animals_7)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_8.jpg" width="224" />|$(attributes_Animals_8)|$(cat_Animals_8)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_9.jpg" width="224" />|$(attributes_Animals_9)|$(cat_Animals_9)|
+
+#### 水果
+
+|原图|属性标签|类别|
+|---|---|---|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_0.jpg" width="224" />|$(attributes_Fruits_0)|$(cat_Fruits_0)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_1.jpg" width="224" />|$(attributes_Fruits_1)|$(cat_Fruits_1)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_2.jpg" width="224" />|$(attributes_Fruits_2)|$(cat_Fruits_2)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_3.jpg" width="224" />|$(attributes_Fruits_3)|$(cat_Fruits_3)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_4.jpg" width="224" />|$(attributes_Fruits_4)|$(cat_Fruits_4)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_5.jpg" width="224" />|$(attributes_Fruits_5)|$(cat_Fruits_5)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_6.jpg" width="224" />|$(attributes_Fruits_6)|$(cat_Fruits_6)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_7.jpg" width="224" />|$(attributes_Fruits_7)|$(cat_Fruits_7)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_8.jpg" width="224" />|$(attributes_Fruits_8)|$(cat_Fruits_8)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_9.jpg" width="224" />|$(attributes_Fruits_9)|$(cat_Fruits_9)|
+
+#### 交通工具
+
+|原图|属性标签|类别|
+|---|---|---|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_0.jpg" width="224" />|$(attributes_Vehicles_0)|$(cat_Vehicles_0)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_1.jpg" width="224" />|$(attributes_Vehicles_1)|$(cat_Vehicles_1)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_2.jpg" width="224" />|$(attributes_Vehicles_2)|$(cat_Vehicles_2)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_3.jpg" width="224" />|$(attributes_Vehicles_3)|$(cat_Vehicles_3)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_4.jpg" width="224" />|$(attributes_Vehicles_4)|$(cat_Vehicles_4)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_5.jpg" width="224" />|$(attributes_Vehicles_5)|$(cat_Vehicles_5)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_6.jpg" width="224" />|$(attributes_Vehicles_6)|$(cat_Vehicles_6)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_7.jpg" width="224" />|$(attributes_Vehicles_7)|$(cat_Vehicles_7)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_8.jpg" width="224" />|$(attributes_Vehicles_8)|$(cat_Vehicles_8)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_9.jpg" width="224" />|$(attributes_Vehicles_9)|$(cat_Vehicles_9)|
+
+#### 电子产品
+
+|原图|属性标签|类别|
+|---|---|---|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_0.jpg" width="224" />|$(attributes_Electronics_0)|$(cat_Electronics_0)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_1.jpg" width="224" />|$(attributes_Electronics_1)|$(cat_Electronics_1)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_2.jpg" width="224" />|$(attributes_Electronics_2)|$(cat_Electronics_2)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_3.jpg" width="224" />|$(attributes_Electronics_3)|$(cat_Electronics_3)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_4.jpg" width="224" />|$(attributes_Electronics_4)|$(cat_Electronics_4)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_5.jpg" width="224" />|$(attributes_Electronics_5)|$(cat_Electronics_5)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_6.jpg" width="224" />|$(attributes_Electronics_6)|$(cat_Electronics_6)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_7.jpg" width="224" />|$(attributes_Electronics_7)|$(cat_Electronics_7)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_8.jpg" width="224" />|$(attributes_Electronics_8)|$(cat_Electronics_8)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_9.jpg" width="224" />|$(attributes_Electronics_9)|$(cat_Electronics_9)|
+
+#### 发型
+
+|原图|属性标签|类别|
+|---|---|---|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_0.jpg" width="224" />|$(attributes_Hairstyles_0)|$(cat_Hairstyles_0)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_1.jpg" width="224" />|$(attributes_Hairstyles_1)|$(cat_Hairstyles_1)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_2.jpg" width="224" />|$(attributes_Hairstyles_2)|$(cat_Hairstyles_2)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_3.jpg" width="224" />|$(attributes_Hairstyles_3)|$(cat_Hairstyles_3)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_4.jpg" width="224" />|$(attributes_Hairstyles_4)|$(cat_Hairstyles_4)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_5.jpg" width="224" />|$(attributes_Hairstyles_5)|$(cat_Hairstyles_5)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_6.jpg" width="224" />|$(attributes_Hairstyles_6)|$(cat_Hairstyles_6)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_7.jpg" width="224" />|$(attributes_Hairstyles_7)|$(cat_Hairstyles_7)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_8.jpg" width="224" />|$(attributes_Hairstyles_8)|$(cat_Hairstyles_8)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_9.jpg" width="224" />|$(attributes_Hairstyles_9)|$(cat_Hairstyles_9)|
 
