@@ -83,7 +83,6 @@ def ensure_folder(folder):
 
 
 def save_checkpoint(epoch, model, optimizer, val_acc, is_best, superclass):
-    save_folder = 'models'
     ensure_folder(save_folder)
     state = {'model': model,
              'optimizer': optimizer}

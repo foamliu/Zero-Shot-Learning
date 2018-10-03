@@ -43,19 +43,81 @@ $ tensorboard --logdir path_to_current_dir/logs
 下载 [pre-trained model](https://github.com/foamliu/Zero-Shot-Learning/releases/download/v1.0/model.11-0.6262.hdf5) 放在 models 目录然后执行:
 
 ```bash
-$ python demo.py
+$ python demo.py -s "Animals"
 ```
+
+#### 动物
 
 |原图|属性标签|类别|
 |---|---|---|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_0.jpg" width="224" />|$(attributes_0)|$(cat_0)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_1.jpg" width="224" />|$(attributes_1)|$(cat_1)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_2.jpg" width="224" />|$(attributes_2)|$(cat_2)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_3.jpg" width="224" />|$(attributes_3)|$(cat_3)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_4.jpg" width="224" />|$(attributes_4)|$(cat_4)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_5.jpg" width="224" />|$(attributes_5)|$(cat_5)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_6.jpg" width="224" />|$(attributes_6)|$(cat_6)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_7.jpg" width="224" />|$(attributes_7)|$(cat_7)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_8.jpg" width="224" />|$(attributes_8)|$(cat_8)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_9.jpg" width="224" />|$(attributes_9)|$(cat_9)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_0.jpg" width="224" />|$(attributes_Animals_0)|$(cat_Animals_0)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_1.jpg" width="224" />|$(attributes_Animals_1)|$(cat_Animals_1)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_2.jpg" width="224" />|$(attributes_Animals_2)|$(cat_Animals_2)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_3.jpg" width="224" />|$(attributes_Animals_3)|$(cat_Animals_3)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_4.jpg" width="224" />|$(attributes_Animals_4)|$(cat_Animals_4)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_5.jpg" width="224" />|$(attributes_Animals_5)|$(cat_Animals_5)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_6.jpg" width="224" />|$(attributes_Animals_6)|$(cat_Animals_6)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_7.jpg" width="224" />|$(attributes_Animals_7)|$(cat_Animals_7)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_8.jpg" width="224" />|$(attributes_Animals_8)|$(cat_Animals_8)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Animals_9.jpg" width="224" />|$(attributes_Animals_9)|$(cat_Animals_9)|
+
+#### 水果
+
+|原图|属性标签|类别|
+|---|---|---|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_0.jpg" width="224" />|$(attributes_Fruits_0)|$(cat_Fruits_0)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_1.jpg" width="224" />|$(attributes_Fruits_1)|$(cat_Fruits_1)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_2.jpg" width="224" />|$(attributes_Fruits_2)|$(cat_Fruits_2)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_3.jpg" width="224" />|$(attributes_Fruits_3)|$(cat_Fruits_3)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_4.jpg" width="224" />|$(attributes_Fruits_4)|$(cat_Fruits_4)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_5.jpg" width="224" />|$(attributes_Fruits_5)|$(cat_Fruits_5)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_6.jpg" width="224" />|$(attributes_Fruits_6)|$(cat_Fruits_6)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_7.jpg" width="224" />|$(attributes_Fruits_7)|$(cat_Fruits_7)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_8.jpg" width="224" />|$(attributes_Fruits_8)|$(cat_Fruits_8)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Fruits_9.jpg" width="224" />|$(attributes_Fruits_9)|$(cat_Fruits_9)|
+
+#### 交通工具
+
+|原图|属性标签|类别|
+|---|---|---|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_0.jpg" width="224" />|$(attributes_Vehicles_0)|$(cat_Vehicles_0)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_1.jpg" width="224" />|$(attributes_Vehicles_1)|$(cat_Vehicles_1)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_2.jpg" width="224" />|$(attributes_Vehicles_2)|$(cat_Vehicles_2)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_3.jpg" width="224" />|$(attributes_Vehicles_3)|$(cat_Vehicles_3)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_4.jpg" width="224" />|$(attributes_Vehicles_4)|$(cat_Vehicles_4)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_5.jpg" width="224" />|$(attributes_Vehicles_5)|$(cat_Vehicles_5)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_6.jpg" width="224" />|$(attributes_Vehicles_6)|$(cat_Vehicles_6)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_7.jpg" width="224" />|$(attributes_Vehicles_7)|$(cat_Vehicles_7)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_8.jpg" width="224" />|$(attributes_Vehicles_8)|$(cat_Vehicles_8)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Vehicles_9.jpg" width="224" />|$(attributes_Vehicles_9)|$(cat_Vehicles_9)|
+
+#### 电子产品
+
+|原图|属性标签|类别|
+|---|---|---|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_0.jpg" width="224" />|$(attributes_Electronics_0)|$(cat_Electronics_0)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_1.jpg" width="224" />|$(attributes_Electronics_1)|$(cat_Electronics_1)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_2.jpg" width="224" />|$(attributes_Electronics_2)|$(cat_Electronics_2)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_3.jpg" width="224" />|$(attributes_Electronics_3)|$(cat_Electronics_3)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_4.jpg" width="224" />|$(attributes_Electronics_4)|$(cat_Electronics_4)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_5.jpg" width="224" />|$(attributes_Electronics_5)|$(cat_Electronics_5)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_6.jpg" width="224" />|$(attributes_Electronics_6)|$(cat_Electronics_6)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_7.jpg" width="224" />|$(attributes_Electronics_7)|$(cat_Electronics_7)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_8.jpg" width="224" />|$(attributes_Electronics_8)|$(cat_Electronics_8)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Electronics_9.jpg" width="224" />|$(attributes_Electronics_9)|$(cat_Electronics_9)|
+
+#### 发型
+
+|原图|属性标签|类别|
+|---|---|---|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_0.jpg" width="224" />|$(attributes_Hairstyles_0)|$(cat_Hairstyles_0)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_1.jpg" width="224" />|$(attributes_Hairstyles_1)|$(cat_Hairstyles_1)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_2.jpg" width="224" />|$(attributes_Hairstyles_2)|$(cat_Hairstyles_2)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_3.jpg" width="224" />|$(attributes_Hairstyles_3)|$(cat_Hairstyles_3)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_4.jpg" width="224" />|$(attributes_Hairstyles_4)|$(cat_Hairstyles_4)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_5.jpg" width="224" />|$(attributes_Hairstyles_5)|$(cat_Hairstyles_5)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_6.jpg" width="224" />|$(attributes_Hairstyles_6)|$(cat_Hairstyles_6)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_7.jpg" width="224" />|$(attributes_Hairstyles_7)|$(cat_Hairstyles_7)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_8.jpg" width="224" />|$(attributes_Hairstyles_8)|$(cat_Hairstyles_8)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_9.jpg" width="224" />|$(attributes_Hairstyles_9)|$(cat_Hairstyles_9)|
 
