@@ -54,7 +54,8 @@ def main(args):
     with torch.no_grad():
         preds = model(imgs)
 
-    _, scores = batched_KNN(preds, 1)
+    attributes_per_class = get_attributes_per_class_by_superclass(superclass)
+    _, scores = batched_KNN(preds, 1, attributes_per_class)
 
     for i in range(num_test_samples):
         embeded = preds[i]
