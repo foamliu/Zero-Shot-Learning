@@ -194,3 +194,17 @@ def get_test_folder_by_superclass(superclass):
         test_folder = zsl_b_hairstyles_test_folder
 
     return test_folder
+
+
+def get_attribute_names_by_superclass(superclass):
+    _, _, _, annotations_attribute_list = get_annotations_by_superclass(superclass)
+    attribute_list = pd.read_csv(annotations_attribute_list, header=None, usecols=[2])
+    attribute_list.columns = ['attribute_name']
+    attribute_list['attribute_name'] = attribute_list['attribute_name'].str.strip()
+    attribute_names = []
+    for i in range(len(attribute_list)):
+        attribute_name = attribute_list['attribute_name'][i]
+        attribute_name = attribute_name.split(': ')[1]
+        attribute_names.append(attribute_name)
+    attribute_names = np.array(attribute_names)
+    return attribute_names

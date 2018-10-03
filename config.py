@@ -109,13 +109,4 @@ annotations_labels.columns = ['label_name', 'img_path']
 annotations_labels['label_name'] = annotations_labels['label_name'].str.strip()
 annotations_labels['img_path'] = annotations_labels['img_path'].str.strip()
 
-annotations_attribute_list = zsl_a_animals_train_annotations_attribute_list
-attribute_list = pd.read_csv(annotations_attribute_list, header=None, usecols=[2])
-attribute_list.columns = ['attribute_name']
-attribute_list['attribute_name'] = attribute_list['attribute_name'].str.strip()
-attribute_names = []
-for i in range(len(attribute_list)):
-    attribute_name = attribute_list['attribute_name'][i]
-    attribute_name = attribute_name.split(': ')[1]
-    attribute_names.append(attribute_name)
-attribute_names = np.array(attribute_names)
+
