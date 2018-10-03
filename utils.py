@@ -173,3 +173,18 @@ def get_attributes_per_class_by_superclass(superclass):
     attributes_per_class = torch.tensor(attributes_per_class)
     attributes_per_class.to(device)
     return attributes_per_class
+
+
+def get_test_folder_by_superclass(superclass):
+    if superclass == 'Animals':
+        test_folder = zsl_a_animals_test_folder
+    elif superclass == 'Fruits':
+        test_folder = zsl_a_fruits_test_folder
+    elif superclass == 'Vehicles':
+        test_folder = zsl_b_vehicles_test_folder
+    elif superclass == 'Electronics':
+        test_folder = zsl_b_electronics_test_folder
+    else:  # 'Hairstyles'
+        test_folder = zsl_b_hairstyles_test_folder
+
+    return test_folder

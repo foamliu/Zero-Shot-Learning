@@ -1,18 +1,21 @@
+import argparse
 import json
 import random
 
 import torchvision.transforms as transforms
 from scipy.misc import imread, imresize, imsave
 
-from config import *
 from utils import *
 
 normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
 transform = transforms.Compose([normalize])
 
 
-def main():
-    checkpoint = 'BEST_checkpoint.tar'  # model checkpoint
+def main(args):
+    superclass = args['superclass']
+    if superclass is None:
+        superclass = 'Animals'
+    checkpoint = 'BEST_{}_checkpoint.tar'.format(superclass)  # model checkpoint
     # Load model
     checkpoint = torch.load(checkpoint)
     model = checkpoint['model']
@@ -20,7 +23,8 @@ def main():
     model = model.cuda()
     # model.eval()
 
-    files = [os.path.join(zsl_a_animals_test_folder, file) for file in os.listdir(zsl_a_animals_test_folder) if
+    test_folder = get_test_folder_by_superclass(superclass)
+    files = [os.path.join(test_folder, file) for file in os.listdir(test_folder) if
              file.lower().endswith('.jpg')]
 
     num_test_samples = 10
@@ -32,7 +36,7 @@ def main():
         # Read images
         img = imread(path)
         img = imresize(img, (224, 224))
-        imsave('images/image_{}.jpg'.format(i), img)
+        imsave('images/image_{}_{}.jpg'.format(superclass, i), img)
 
         img = img.transpose(2, 0, 1)
         assert img.shape == (3, 224, 224)
@@ -63,9 +67,15 @@ def main():
         result.append(
             {'i': i, 'labal_id': labal_id, 'label_name': label_name, 'attributes': attributes})
 
-    with open('result.json', 'w') as file:
+    with open('result_{}.json'.format(superclass), 'w') as file:
         json.dump(result, file, indent=4, ensure_ascii=False)
 
 
 if __name__ == '__main__':
-    main()
+    # Parse arguments
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-s", "--superclass",
+                    help="superclass ('Animals', 'Fruits', 'Vehicles', 'Electronics', 'Hairstyles')")
+    args = vars(ap.parse_args())
+
+    main(args)
