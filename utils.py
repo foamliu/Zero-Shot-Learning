@@ -77,14 +77,21 @@ def accuracy(scores, targets):
     return correct_total.item() * (100.0 / batch_size)
 
 
+def ensure_folder(folder):
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+
+
 def save_checkpoint(epoch, model, optimizer, val_acc, is_best, superclass):
+    save_folder = 'models'
+    ensure_folder(save_folder)
     state = {'model': model,
              'optimizer': optimizer}
-    filename = 'checkpoint_{0}_{1}_{2:.3f}.tar'.format(superclass, epoch, val_acc)
+    filename = '{0}/checkpoint_{1}_{2}_{3:.3f}.tar'.format(save_folder, superclass, epoch, val_acc)
     torch.save(state, filename)
     # If this checkpoint is the best so far, store a copy so it doesn't get overwritten by a worse checkpoint
     if is_best:
-        torch.save(state, 'BEST_{}_checkpoint.tar'.format(superclass))
+        torch.save(state, '{}/BEST_{}_checkpoint.tar'.format(save_folder, superclass))
 
 
 def adjust_learning_rate(optimizer, shrink_factor):
