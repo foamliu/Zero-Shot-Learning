@@ -16,6 +16,7 @@ def main(args):
     if superclass is None:
         superclass = 'Animals'
     checkpoint = '{}/BEST_{}_checkpoint.tar'.format(save_folder, superclass)  # model checkpoint
+    print('checkpoint: ' + str(checkpoint))
     # Load model
     checkpoint = torch.load(checkpoint)
     model = checkpoint['model']
