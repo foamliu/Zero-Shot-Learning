@@ -40,8 +40,6 @@ def main(args):
         imsave('images/image_{}_{}.jpg'.format(superclass, i), img)
 
         img = img.transpose(2, 0, 1)
-        if img.shape != (3, 224, 224)
-            print('img.shape: ' + str(img.shape))
         assert img.shape == (3, 224, 224)
         assert np.max(img) <= 255
         img = torch.FloatTensor(img / 255.)
