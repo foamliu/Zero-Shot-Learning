@@ -40,7 +40,7 @@ def main(args):
         imsave('images/image_{}_{}.jpg'.format(superclass, i), img)
 
         img = img.transpose(2, 0, 1)
-        assert img.shape == (3, 224, 224)
+        assert img.shape == (3, 224, 224), 'img.shape: ' + str(img.shape)
         assert np.max(img) <= 255
         img = torch.FloatTensor(img / 255.)
         img = transform(img)
