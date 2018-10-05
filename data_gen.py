@@ -46,9 +46,9 @@ class ZslDataset(Dataset):
             img_path = img_path[8:]
         path = os.path.join(self.image_folder, img_path)
         # Read images
-        img = imread(path)
+        img = imread(path, flatten=False, mode='RGB')
         img = imresize(img, (224, 224))
-        print(img.shape)
+        # print(img.shape)
         img = img.transpose(2, 0, 1)
         assert img.shape == (3, 224, 224)
         assert np.max(img) <= 255
