@@ -146,7 +146,7 @@ def main(args):
     model = model.to(device)
 
     # Initialize optimizers
-    optimizer = optim.Adam([model.parameters(), W], lr=learning_rate)
+    optimizer = optim.Adam([{'params': model.parameters()}, {'params': W}], lr=learning_rate)
 
     best_acc = 0
     epochs_since_improvement = 0
