@@ -70,7 +70,8 @@ def main(args):
         result.append(
             {'i': i, 'labal_id': labal_id, 'label_name': label_name, 'attributes': attributes})
 
-    with open('result_{}.json'.format(superclass), 'w') as file:
+    ensure_folder('data')
+    with open('data/result_{}.json'.format(superclass), 'w') as file:
         json.dump(result, file, indent=4, ensure_ascii=False)
 
 

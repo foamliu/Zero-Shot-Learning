@@ -8,7 +8,7 @@ if __name__ == '__main__':
     template = ''.join(template)
 
     for superclass in ['Animals', 'Fruits', 'Vehicles', 'Electronics', 'Hairstyles']:
-        filename = 'result_{}.json'.format(superclass)
+        filename = 'data/result_{}.json'.format(superclass)
         if os.path.isfile(filename):
             with open(filename, 'r', encoding="utf-8") as file:
                 result = json.load(file)
