@@ -43,8 +43,8 @@ $ tensorboard --logdir path_to_current_dir/logs
 各超类训练结束最佳的验证集准确率和损失为：
 
 |=|动物|水果|交通工具|电子产品|发型|
-|ACCURACY|95.999|76.859|88.277|88.016|na|
-|LOSS|0.011|0.039|0.014|0.021|na|
+|ACCURACY|95.999|76.859|88.277|88.016|50.149|
+|LOSS|0.011|0.039|0.014|0.021|0.065|
 
 ### Demo
 下载下列预训练模型放在 models 目录然后执行:
@@ -124,14 +124,14 @@ $ python demo.py -s "Animals"
 
 |原图|属性标签|类别|
 |---|---|---|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_0.jpg" width="224" />|$(attributes_Hairstyles_0)|$(cat_Hairstyles_0)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_1.jpg" width="224" />|$(attributes_Hairstyles_1)|$(cat_Hairstyles_1)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_2.jpg" width="224" />|$(attributes_Hairstyles_2)|$(cat_Hairstyles_2)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_3.jpg" width="224" />|$(attributes_Hairstyles_3)|$(cat_Hairstyles_3)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_4.jpg" width="224" />|$(attributes_Hairstyles_4)|$(cat_Hairstyles_4)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_5.jpg" width="224" />|$(attributes_Hairstyles_5)|$(cat_Hairstyles_5)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_6.jpg" width="224" />|$(attributes_Hairstyles_6)|$(cat_Hairstyles_6)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_7.jpg" width="224" />|$(attributes_Hairstyles_7)|$(cat_Hairstyles_7)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_8.jpg" width="224" />|$(attributes_Hairstyles_8)|$(cat_Hairstyles_8)|
-|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_9.jpg" width="224" />|$(attributes_Hairstyles_9)|$(cat_Hairstyles_9)|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_0.jpg" width="224" />|适合皮肤白皙的人, 适合尖尖鼻子的人, 适合戴耳环的人, 适合化浓妆的人, 是否活泼|Label_A_09|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_1.jpg" width="224" />|适合皮肤白皙的人, 适合尖尖鼻子的人, 适合化浓妆的人, 是否优雅, 是否成熟, 是否活泼|Label_A_30|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_2.jpg" width="224" />|适合小眼睛的人, 适合尖尖鼻子的人, 适合戴耳环的人, 适合化浓妆的人, 容易变乱, 是否可爱, 是否活泼|Label_A_09|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_3.jpg" width="224" />|适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人, 适合戴耳环的人, 适合化浓妆的人, 是否纯净, 是否活泼|Label_A_27|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_4.jpg" width="224" />|适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人, 适合戴耳环的人, 适合化浓妆的人, 容易变乱, 是否优雅, 是否性感, 是否活泼|Label_A_03|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_5.jpg" width="224" />|适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人, 适合戴耳环的人, 适合化浓妆的人, 容易变乱|Label_A_09|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_6.jpg" width="224" />|适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人, 适合化浓妆的人, 容易变乱, 是简约的, 是否优雅, 是否纯净, 是否活泼|Label_A_12|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_7.jpg" width="224" />|适合皮肤白皙的人, 适合尖尖鼻子的人, 适合戴耳环的人, 适合化浓妆的人, 是否优雅, 是否纯净, 是否活泼|Label_A_12|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_8.jpg" width="224" />|适合皮肤白皙的人, 适合尖尖鼻子的人, 适合戴耳环的人, 适合化浓妆的人, 容易变乱, 是否优雅, 是否可爱, 是否纯净, 是否活泼|Label_A_09|
+|<img src="https://github.com/foamliu/Zero-Shot-Learning/raw/master/images/image_Hairstyles_9.jpg" width="224" />|适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人, 适合戴耳环的人, 适合化浓妆的人, 是否性感|Label_A_30|
 
