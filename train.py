@@ -3,6 +3,7 @@ import time
 
 from torch import nn
 from torch import optim
+from torch.autograd import Variable
 from torch.utils.data import DataLoader
 
 from data_gen import ZslDataset
@@ -10,12 +11,12 @@ from models import Encoder
 from utils import *
 
 
-def train(epoch, train_loader, model, optimizer, attributes_per_class):
+def train(epoch, train_loader, model, W, optimizer, attributes_per_class):
     # Ensure dropout layers are in train mode
     model.train()
 
     # Loss function
-    criterion = nn.MSELoss().to(device)
+    # criterion = nn.MSELoss().to(device)
 
     batch_time = ExpoAverageMeter()  # forward prop. + back prop. time
     losses = ExpoAverageMeter()  # loss (per word decoded)
@@ -38,12 +39,16 @@ def train(epoch, train_loader, model, optimizer, attributes_per_class):
         # print('targets: ' + str(targets))
         # print('targets.size(): ' + str(targets.size()))
 
-        preds = model(imgs)
+        X = model(imgs)
+
+        preds = torch.matmul(X, W)
         _, scores = batched_KNN(preds, 1, attributes_per_class)
         # print('scores: ' + str(scores))
         # print('scores.size(): ' + str(scores.size()))
 
-        loss = criterion(preds, attributes)
+        # loss = criterion(preds, attributes)
+        loss = torch.norm(torch.matmul(X, W) - attributes) ** 2 + 1.0 / lambda1 * torch.norm(
+            X - torch.matmul(W.t(), attributes)) ** 2
         loss.backward()
 
         optimizer.step()
@@ -69,11 +74,11 @@ def train(epoch, train_loader, model, optimizer, attributes_per_class):
                                                                     accs=accs))
 
 
-def valid(val_loader, model, attributes_per_class):
+def valid(val_loader, model, W, attributes_per_class):
     model.eval()  # eval mode (no dropout or batchnorm)
 
     # Loss function
-    criterion = nn.MSELoss().to(device)
+    # criterion = nn.MSELoss().to(device)
 
     batch_time = ExpoAverageMeter()  # forward prop. + back prop. time
     losses = ExpoAverageMeter()  # loss (per word decoded)
@@ -89,9 +94,12 @@ def valid(val_loader, model, attributes_per_class):
             label_ids = label_ids.view(-1).to(device)
             attributes = attributes.to(device)  # (batch_size, 123)
 
-            preds = model(imgs)  # (batch_size, 123)
+            X = model(imgs)  # (batch_size, 123)
 
-            loss = criterion(preds, attributes)
+            preds = torch.matmul(X, W)
+            # loss = criterion(preds, attributes)
+            loss = torch.norm(torch.matmul(X, W) - attributes) ** 2 + 1.0 / lambda1 * torch.norm(
+                X - torch.matmul(W.t(), attributes)) ** 2
 
             _, scores = batched_KNN(preds, 1, attributes_per_class)
             acc = accuracy(scores, label_ids)
@@ -127,6 +135,8 @@ def main(args):
 
     embedding_size = get_embedding_size_by_superclass(superclass)
     print('embedding_size: ' + str(embedding_size))
+    W = Variable(torch.zeros(feature_size, embedding_size), requires_grad=True)
+    torch.nn.init.xavier_uniform(W)
 
     attributes_per_class = get_attributes_per_class_by_superclass(superclass)
 
@@ -151,7 +161,7 @@ def main(args):
             adjust_learning_rate(optimizer, 0.8)
 
         # One epoch's training
-        train(epoch, train_loader, model, optimizer, attributes_per_class)
+        train(epoch, train_loader, model, W, optimizer, attributes_per_class)
 
         # One epoch's validation
         val_acc, val_loss = valid(val_loader, model, attributes_per_class)

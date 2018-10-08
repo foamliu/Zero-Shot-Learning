@@ -15,6 +15,7 @@ batch_size = 16
 train_split = 0.8
 feature_size = 2048  # ResNet-101 feature size
 print_freq = 10
+lambda1 = 800000
 save_folder = 'models'
 
 data_folder = 'data'

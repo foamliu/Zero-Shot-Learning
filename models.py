@@ -11,7 +11,7 @@ class Encoder(nn.Module):
     Encoder.
     """
 
-    def __init__(self, embedding_size):
+    def __init__(self, embedding_size=123):
         super(Encoder, self).__init__()
 
         resnet = torchvision.models.resnet101(pretrained=True)  # pretrained ImageNet ResNet-101
@@ -19,8 +19,8 @@ class Encoder(nn.Module):
         # Remove linear and pool layers (since we're not doing classification)
         modules = list(resnet.children())[:-1]
         self.resnet = nn.Sequential(*modules)
-        self.embedding = nn.Linear(feature_size, embedding_size)
-        self.sigmoid = nn.Sigmoid()
+        # self.embedding = nn.Linear(feature_size, embedding_size)
+        # self.sigmoid = nn.Sigmoid()
         self.fine_tune()
 
     def forward(self, images):
@@ -31,8 +31,8 @@ class Encoder(nn.Module):
         """
         out = self.resnet(images)
         out = out.view(-1, feature_size)  # (batch_size, 2048)
-        out = self.embedding(out)
-        out = self.sigmoid(out)
+        # out = self.embedding(out)
+        # out = self.sigmoid(out)
         return out
 
     def fine_tune(self):
