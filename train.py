@@ -53,6 +53,9 @@ def train(epoch, train_loader, model, W, optimizer, attributes_per_class):
 
         optimizer.step()
 
+        with torch.no_grad():
+            W -= learning_rate * W.grad
+
         acc = accuracy(scores, label_ids)
         # print('acc: ' + str(acc))
 
@@ -148,7 +151,7 @@ def main(args):
     model = model.to(device)
 
     # Initialize optimizers
-    optimizer = optim.Adam([{'params': model.parameters()}, {'params': W}], lr=learning_rate)
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     best_acc = 0
     epochs_since_improvement = 0
