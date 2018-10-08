@@ -40,18 +40,25 @@ $ tensorboard --logdir path_to_current_dir/logs
 ```
 
 
-各超类训练结束最佳的准确率和损失为：
+各超类训练结束最佳的验证集准确率和损失为：
 
 |=|动物|水果|交通工具|电子产品|发型|
 |ACCURACY|95.999|76.859|88.277|88.016|na|
 |LOSS|0.011|0.039|0.014|0.021|na|
 
 ### Demo
-下载 [pre-trained model](https://github.com/foamliu/Zero-Shot-Learning/releases/download/v1.0/model.11-0.6262.hdf5) 放在 models 目录然后执行:
+下载下列预训练模型放在 models 目录然后执行:
+- [动物](https://github.com/foamliu/Zero-Shot-Learning/releases/download/v1.0/BEST_Animals_checkpoint.tar)
+- [水果](https://github.com/foamliu/Zero-Shot-Learning/releases/download/v1.0/BEST_Fruits_checkpoint.tar)
+- [交通工具](https://github.com/foamliu/Zero-Shot-Learning/releases/download/v1.0/BEST_Vehicles_checkpoint.tar)
+- [电子产品](https://github.com/foamliu/Zero-Shot-Learning/releases/download/v1.0/BEST_Electronics_checkpoint.tar)
+- [发型](https://github.com/foamliu/Zero-Shot-Learning/releases/download/v1.0/BEST_Hairstyles_checkpoint.tar)
 
 ```bash
 $ python demo.py -s "Animals"
 ```
+
+此处超类可以是5个超类中任意一个。
 
 #### 动物
 
