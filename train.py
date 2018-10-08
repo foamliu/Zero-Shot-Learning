@@ -2,7 +2,6 @@ import argparse
 import time
 
 from torch import optim
-from torch.autograd import Variable
 from torch.utils.data import DataLoader
 
 from data_gen import ZslDataset
@@ -38,9 +37,9 @@ def train(epoch, train_loader, model, W, optimizer, attributes_per_class):
         # print('targets: ' + str(targets))
         # print('targets.size(): ' + str(targets.size()))
 
-        X = model(imgs)
+        X = model(imgs)  # (batch_size, 2048)
+        preds = X.mm(W)  # (batch_size, 123)
 
-        preds = X.mm(W)
         _, scores = batched_KNN(preds, 1, attributes_per_class)
         # print('scores: ' + str(scores))
         # print('scores.size(): ' + str(scores.size()))
@@ -52,9 +51,6 @@ def train(epoch, train_loader, model, W, optimizer, attributes_per_class):
         loss.backward()
 
         optimizer.step()
-
-        with torch.no_grad():
-            W -= learning_rate * W.grad
 
         acc = accuracy(scores, label_ids)
         # print('acc: ' + str(acc))
@@ -97,9 +93,9 @@ def valid(val_loader, model, W, attributes_per_class):
             label_ids = label_ids.view(-1).to(device)
             attributes = attributes.to(device)  # (batch_size, 123)
 
-            X = model(imgs)  # (batch_size, 123)
+            X = model(imgs)  # (batch_size, 2048)
+            preds = X.mm(W)  # (batch_size, 123)
 
-            preds = X.mm(W)
             # loss = criterion(preds, attributes)
             # loss = torch.norm(torch.matmul(X, W) - attributes) ** 2 + 1.0 / lambda1 * torch.norm(
             #     X - torch.matmul(attributes, W.t())) ** 2
@@ -150,7 +146,7 @@ def main(args):
     model = model.to(device)
 
     # Initialize optimizers
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+    optimizer = optim.Adam([model.parameters(), W], lr=learning_rate)
 
     best_acc = 0
     epochs_since_improvement = 0
