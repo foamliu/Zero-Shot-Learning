@@ -1,7 +1,6 @@
 import argparse
 import time
 
-from torch import nn
 from torch import optim
 from torch.autograd import Variable
 from torch.utils.data import DataLoader
@@ -149,7 +148,7 @@ def main(args):
     model = model.to(device)
 
     # Initialize optimizers
-    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+    optimizer = optim.Adam([{'params': model.parameters()}, {'params': W}], lr=learning_rate)
 
     best_acc = 0
     epochs_since_improvement = 0
