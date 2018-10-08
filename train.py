@@ -40,7 +40,7 @@ def train(epoch, train_loader, model, W, optimizer, attributes_per_class):
 
         X = model(imgs)
 
-        preds = torch.matmul(X, W)
+        preds = X.mm(W)
         _, scores = batched_KNN(preds, 1, attributes_per_class)
         # print('scores: ' + str(scores))
         # print('scores.size(): ' + str(scores.size()))
@@ -48,7 +48,7 @@ def train(epoch, train_loader, model, W, optimizer, attributes_per_class):
         # loss = criterion(preds, attributes)
         # loss = torch.norm(torch.matmul(X, W) - attributes) ** 2 + 1.0 / lambda1 * torch.norm(
         #     X - torch.matmul(attributes, W.t())) ** 2
-        loss = torch.norm(torch.matmul(X, W) - attributes) ** 2
+        loss = (X.mm(W) - attributes).pow(2).sum()
         loss.backward()
 
         optimizer.step()
@@ -99,11 +99,11 @@ def valid(val_loader, model, W, attributes_per_class):
 
             X = model(imgs)  # (batch_size, 123)
 
-            preds = torch.matmul(X, W)
+            preds = X.mm(W)
             # loss = criterion(preds, attributes)
             # loss = torch.norm(torch.matmul(X, W) - attributes) ** 2 + 1.0 / lambda1 * torch.norm(
             #     X - torch.matmul(attributes, W.t())) ** 2
-            loss = torch.norm(torch.matmul(X, W) - attributes) ** 2
+            loss = (X.mm(W) - attributes).pow(2).sum()
 
             _, scores = batched_KNN(preds, 1, attributes_per_class)
             acc = accuracy(scores, label_ids)
@@ -139,8 +139,7 @@ def main(args):
 
     embedding_size = get_embedding_size_by_superclass(superclass)
     print('embedding_size: ' + str(embedding_size))
-    W = Variable(torch.randn(feature_size, embedding_size), requires_grad=True)
-    W = W.to(device)
+    W = torch.randn(feature_size, embedding_size, requires_grad=True, device=device)
 
     attributes_per_class = get_attributes_per_class_by_superclass(superclass)
 
