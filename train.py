@@ -47,7 +47,7 @@ def train(epoch, train_loader, model, W, optimizer, attributes_per_class):
         # loss = criterion(preds, attributes)
         # loss = torch.norm(torch.matmul(X, W) - attributes) ** 2 + 1.0 / lambda1 * torch.norm(
         #     X - torch.matmul(attributes, W.t())) ** 2
-        loss = (X.mm(W) - attributes).pow(2).sum()
+        loss = (X.mm(W) - attributes).pow(2).mean() + 1.0 / lambda1 * (X - attributes.mm(W.t())).pow(2).mean()
         loss.backward()
 
         optimizer.step()
@@ -99,7 +99,7 @@ def valid(val_loader, model, W, attributes_per_class):
             # loss = criterion(preds, attributes)
             # loss = torch.norm(torch.matmul(X, W) - attributes) ** 2 + 1.0 / lambda1 * torch.norm(
             #     X - torch.matmul(attributes, W.t())) ** 2
-            loss = (X.mm(W) - attributes).pow(2).sum()
+            loss = (X.mm(W) - attributes).pow(2).mean() + 1.0 / lambda1 * (X - attributes.mm(W.t())).pow(2).mean()
 
             _, scores = batched_KNN(preds, 1, attributes_per_class)
             acc = accuracy(scores, label_ids)
