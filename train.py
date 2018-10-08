@@ -165,7 +165,7 @@ def main(args):
         train(epoch, train_loader, model, W, optimizer, attributes_per_class)
 
         # One epoch's validation
-        val_acc, val_loss = valid(val_loader, model, attributes_per_class)
+        val_acc, val_loss = valid(val_loader, model, W, attributes_per_class)
         print('\n * ACCURACY - {acc:.3f}, LOSS - {loss:.3f}\n'.format(acc=val_acc, loss=val_loss))
 
         # Check if there was an improvement
