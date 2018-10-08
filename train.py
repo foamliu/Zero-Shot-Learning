@@ -136,6 +136,7 @@ def main(args):
     embedding_size = get_embedding_size_by_superclass(superclass)
     print('embedding_size: ' + str(embedding_size))
     W = torch.randn(feature_size, embedding_size, requires_grad=True, device=device)
+    torch.nn.init.xavier_uniform_(W.weight)
 
     attributes_per_class = get_attributes_per_class_by_superclass(superclass)
 
