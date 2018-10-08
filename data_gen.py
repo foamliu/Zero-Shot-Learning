@@ -14,7 +14,7 @@ class ZslDataset(Dataset):
 
         self.image_folder, annotations_labels, annotations_attributes_per_class, _ = get_annotations_by_superclass(
             superclass)
-        print('self.image_folder: ' + str(self.image_folder))
+        # print('self.image_folder: ' + str(self.image_folder))
         self.label_name2idx = get_label_name2idx_by_superclass(superclass)
 
         annotations_labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6])
