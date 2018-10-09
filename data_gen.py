@@ -1,3 +1,4 @@
+import numpy as np
 import torchvision.transforms as transforms
 from scipy.misc import imread, imresize
 from torch.utils.data import Dataset
