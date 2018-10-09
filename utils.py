@@ -36,7 +36,7 @@ class ExpoAverageMeter(object):
         self.beta = 0.9
         self.val = 0
         self.avg = 0
-        self.t = 0
+        self.t = 1
 
     def update(self, val):
         self.avg = self.beta * self.avg + (1 - self.beta) * val
