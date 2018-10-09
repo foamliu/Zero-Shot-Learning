@@ -1,6 +1,5 @@
 import os
 
-import numpy as np
 import pandas as pd
 import torch
 
@@ -109,5 +108,3 @@ annotations_labels = pd.read_csv(annotations_labels, header=None, usecols=[1, 6]
 annotations_labels.columns = ['label_name', 'img_path']
 annotations_labels['label_name'] = annotations_labels['label_name'].str.strip()
 annotations_labels['img_path'] = annotations_labels['img_path'].str.strip()
-
-

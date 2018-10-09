@@ -1,7 +1,7 @@
 import argparse
 import json
 import random
-
+import numpy as np
 import torchvision.transforms as transforms
 from scipy.misc import imread, imresize, imsave
 
