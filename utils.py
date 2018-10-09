@@ -87,10 +87,12 @@ def save_checkpoint(epoch, model, W, optimizer, val_acc, is_best, superclass):
     state = {'model': model,
              'W': W,
              'optimizer': optimizer}
-    filename = '{0}/checkpoint_{1}_{2}_{3:.3f}.tar'.format(save_folder, superclass, epoch, val_acc)
-    torch.save(state, filename)
-    # If this checkpoint is the best so far, store a copy so it doesn't get overwritten by a worse checkpoint
+
     if is_best:
+        filename = '{0}/checkpoint_{1}_{2}_{3:.3f}.tar'.format(save_folder, superclass, epoch, val_acc)
+        torch.save(state, filename)
+
+        # If this checkpoint is the best so far, store a copy so it doesn't get overwritten by a worse checkpoint
         torch.save(state, '{}/BEST_{}_checkpoint.tar'.format(save_folder, superclass))
 
 
