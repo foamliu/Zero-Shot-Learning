@@ -33,7 +33,7 @@ class ExpoAverageMeter(object):
         self.reset()
 
     def reset(self):
-        self.beta = 0.9
+        self.beta = 0.99
         self.val = 0
         self.avg = 0
         self.count = 0
