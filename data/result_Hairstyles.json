@@ -1,0 +1,62 @@
+[
+    {
+        "labal_id": 21,
+        "label_name": "Label_A_22",
+        "attributes": "适合皮肤白皙的人, 适合尖尖鼻子的人, 适合化浓妆的人, 容易变乱, 是简约的, 是否优雅",
+        "i": 0
+    },
+    {
+        "labal_id": 28,
+        "label_name": "Label_A_29",
+        "attributes": "适合小眼睛的人, 适合尖尖鼻子的人",
+        "i": 1
+    },
+    {
+        "labal_id": 11,
+        "label_name": "Label_A_12",
+        "attributes": "适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人, 适合戴帽子的人, 适合戴耳环的人, 适合化浓妆的人, 容易变乱, 是简约的, 是否优雅, 是否性感, 是否纯净, 是否活泼",
+        "i": 2
+    },
+    {
+        "labal_id": 8,
+        "label_name": "Label_A_09",
+        "attributes": "适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人, 适合化浓妆的人, 容易变乱",
+        "i": 3
+    },
+    {
+        "labal_id": 8,
+        "label_name": "Label_A_09",
+        "attributes": "适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人, 适合化浓妆的人, 容易变乱, 是否优雅, 是否活泼",
+        "i": 4
+    },
+    {
+        "labal_id": 21,
+        "label_name": "Label_A_22",
+        "attributes": "适合皮肤白皙的人, 适合尖尖鼻子的人, 适合化浓妆的人",
+        "i": 5
+    },
+    {
+        "labal_id": 14,
+        "label_name": "Label_A_15",
+        "attributes": "适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人",
+        "i": 6
+    },
+    {
+        "labal_id": 23,
+        "label_name": "Label_A_24",
+        "attributes": "适合皮肤白皙的人, 适合尖尖鼻子的人, 适合化浓妆的人, 是否性感",
+        "i": 7
+    },
+    {
+        "labal_id": 11,
+        "label_name": "Label_A_12",
+        "attributes": "适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人, 适合化浓妆的人, 容易变乱, 是否优雅, 是否活泼",
+        "i": 8
+    },
+    {
+        "labal_id": 29,
+        "label_name": "Label_A_30",
+        "attributes": "适合小眼睛的人, 适合皮肤白皙的人, 适合尖尖鼻子的人, 是否优雅",
+        "i": 9
+    }
+]
