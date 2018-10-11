@@ -20,7 +20,9 @@ def main(args):
     # Load model
     checkpoint = torch.load(checkpoint)
     model = checkpoint['model']
+    W = checkpoint['W']
     model = model.to(device)
+    W = W.to(device)
     # model = model.cuda()
     model.eval()
 
@@ -52,7 +54,8 @@ def main(args):
 
     result = []
     with torch.no_grad():
-        preds = model(imgs)
+        X = model(imgs)  # (batch_size, 2048)
+        preds = X.mm(W)  # (batch_size, 123)
 
     attributes_per_class = get_attributes_per_class_by_superclass(superclass)
     attribute_names = get_attribute_names_by_superclass(superclass)
