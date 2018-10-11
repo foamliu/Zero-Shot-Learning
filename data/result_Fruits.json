@@ -1,0 +1,62 @@
+[
+    {
+        "i": 0,
+        "labal_id": 13,
+        "label_name": "Label_A_14",
+        "attributes": "味道是甜的"
+    },
+    {
+        "i": 1,
+        "labal_id": 46,
+        "label_name": "Label_A_47",
+        "attributes": "是红色的, 味道是甜的, 是原生的（未被加工过的）, 是常见的, 可直接食用的（不需要加工）, 含水量高, 有果核"
+    },
+    {
+        "i": 2,
+        "labal_id": 26,
+        "label_name": "Label_A_27",
+        "attributes": "是黄色的, 味道是甜的, 味道是酸的, 是完整的, 是原生的（未被加工过的）, 是常见的, 含水量高, 有果核, 产于热带, 长在树上"
+    },
+    {
+        "i": 3,
+        "labal_id": 9,
+        "label_name": "Label_A_10",
+        "attributes": "是红色的, 是小的（比苹果小）, 味道是甜的, 是完整的, 是软的, 是常见的, 可直接食用的（不需要加工）, 含水量高, 长在树上"
+    },
+    {
+        "i": 4,
+        "labal_id": 10,
+        "label_name": "Label_A_11",
+        "attributes": "是红色的, 味道是甜的, 有皮, 可直接食用的（不需要加工）, 有果核"
+    },
+    {
+        "i": 5,
+        "labal_id": 9,
+        "label_name": "Label_A_10",
+        "attributes": "是红色的, 味道是甜的, 是原生的（未被加工过的）, 是软的, 是常见的, 含水量高, 有果核"
+    },
+    {
+        "i": 6,
+        "labal_id": 43,
+        "label_name": "Label_A_44",
+        "attributes": "味道是甜的, 是光滑的, 是完整的"
+    },
+    {
+        "i": 7,
+        "labal_id": 32,
+        "label_name": "Label_A_33",
+        "attributes": "是红色的, 味道是甜的, 味道是酸的, 是完整的, 是原生的（未被加工过的）, 是软的, 是常见的, 可直接食用的（不需要加工）, 含水量高, 长在树上"
+    },
+    {
+        "i": 8,
+        "labal_id": 45,
+        "label_name": "Label_A_46",
+        "attributes": "味道是甜的"
+    },
+    {
+        "i": 9,
+        "labal_id": 46,
+        "label_name": "Label_A_47",
+        "attributes": "是红色的, 味道是甜的, 是完整的, 是原生的（未被加工过的）, 是常见的, 含水量高"
+    }
+]
