@@ -20,9 +20,9 @@ def main(args):
     # Load model
     checkpoint = torch.load(checkpoint)
     model = checkpoint['model']
-    # model = model.to(device)
-    model = model.cuda()
-    # model.eval()
+    model = model.to(device)
+    # model = model.cuda()
+    model.eval()
 
     test_folder = get_test_folder_by_superclass(superclass)
     files = [os.path.join(test_folder, file) for file in os.listdir(test_folder) if
